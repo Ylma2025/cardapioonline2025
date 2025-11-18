@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador QR Code - Ylma Cake's</title>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #8b5fad 0%, #6d3b9e 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+        
+        h1 {
+            color: #6d3b9e;
+            margin-bottom: 1rem;
+        }
+        
+        .url-display {
+            background: #f0e6ff;
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            word-break: break-all;
+            font-size: 0.9rem;
+        }
+        
+        #qrcode {
+            margin: 1.5rem auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            display: inline-block;
+        }
+        
+        .btn {
+            background: #6d3b9e;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: #8b5fad;
+            transform: translateY(-2px);
+        }
+        
+        .instructions {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: #f8f4ff;
+            border-radius: 10px;
+            text-align: left;
+        }
+        
+        .instructions h3 {
+            color: #6d3b9e;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 QR Code Dinâmico</h1>
+        <p><strong>Ylma Cake's & Cia</strong></p>
+        
+        <div class="url-display" id="urlDisplay">
+            Carregando URL do cardápio...
+        </div>
+        
+        <div id="qrcode"></div>
+        
+        <div>
+            <button class="btn" onclick="atualizarQRCode()">🔄 Atualizar QR Code</button>
+            <button class="btn" onclick="baixarQRCode()">📥 Baixar QR Code</button>
+        </div>
+        
+        <div class="instructions">
+            <h3>📋 Como usar:</h3>
+            <p>1. Este QR Code aponta para seu cardápio online</p>
+            <p>2. Sempre que atualizar o cardápio, clique em "Atualizar QR Code"</p>
+            <p>3. Baixe e imprima o novo QR Code</p>
+            <p>4. Cole nas mesas, balcões ou cardápios físicos</p>
+        </div>
+    </div>
+
+    <script>
+        // URL do seu cardápio no GitHub Pages
+        const URL_CARDAPIO = 'https://ylma2025.github.io/cardapio/';
+        
+        // Elementos da página
+        const urlDisplay = document.getElementById('urlDisplay');
+        const qrcodeContainer = document.getElementById('qrcode');
+        
+        // Gerar QR Code inicial
+        function gerarQRCode() {
+            urlDisplay.textContent = URL_CARDAPIO;
+            
+            // Limpar container anterior
+            qrcodeContainer.innerHTML = '';
+            
+            // Gerar novo QR Code
+            QRCode.toCanvas(qrcodeContainer, URL_CARDAPIO, {
+                width: 200,
+                margin: 2,
+                color: {
+                    dark: '#6d3b9e',
+                    light: '#ffffff'
+                }
+            }, function (error) {
+                if (error) {
+                    console.error(error);
+                    qrcodeContainer.innerHTML = '<p style="color: red;">Erro ao gerar QR Code</p>';
+                }
+            });
+        }
+        
+        // Atualizar QR Code
+        function atualizarQRCode() {
+            // Adiciona timestamp para forçar atualização
+            const urlComTimestamp = URL_CARDAPIO + '?v=' + new Date().getTime();
+            
+            qrcodeContainer.innerHTML = '';
+            QRCode.toCanvas(qrcodeContainer, urlComTimestamp, {
+                width: 200,
+                margin: 2,
+                color: {
+                    dark: '#6d3b9e',
+                    light: '#ffffff'
+                }
+            });
+            
+            // Mostrar mensagem de sucesso
+            alert('QR Code atualizado com sucesso! ✅');
+        }
+        
+        // Baixar QR Code
+        function baixarQRCode() {
+            const canvas = qrcodeContainer.querySelector('canvas');
+            if (canvas) {
+                const link = document.createElement('a');
+                link.download = 'qrcode-cardapio-ylma.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            } else {
+                alert('Gere o QR Code primeiro!');
+            }
+        }
+        
+        // Inicializar quando a página carregar
+        document.addEventListener('DOMContentLoaded', gerarQRCode);
+    </script>
+</body>
+</html>
+Passo 2: Atualizar seu index.html para versão dinâmica
+Adicione este script ao final do seu index.html (antes de </body>):
+
+html
+<script>
+    // Sistema de cache para forçar atualização
+    const CACHE_VERSION = '1.0.0';
+    
+    // Verificar se há nova versão
+    if (localStorage.getItem('cacheVersion') !== CACHE_VERSION) {
+        localStorage.setItem('cacheVersion', CACHE_VERSION);
+        localStorage.setItem('lastUpdate', new Date().toLocaleString('pt-BR'));
+        
+        // Forçar recarregamento na primeira visita
+        if (!sessionStorage.getItem('firstVisit')) {
+            sessionStorage.setItem('firstVisit', 'true');
+            window.location.reload();
+        }
+    }
+    
+    // Adicionar data da última atualização no footer
+    document.addEventListener('DOMContentLoaded', function() {
+        const lastUpdate = localStorage.getItem('lastUpdate');
+        const footer = document.querySelector('.footer .container');
+        if (footer && lastUpdate) {
+            const updateInfo = document.createElement('p');
+            updateInfo.style.marginTop = '10px';
+            updateInfo.style.fontSize = '0.9rem';
+            updateInfo.style.opacity = '0.8';
+            updateInfo.textContent = `Cardápio atualizado em: ${lastUpdate}`;
+            footer.appendChild(updateInfo);
+        }
+    });
+</script>
+Passo 3: Estrutura de arquivos recomendada
+text
+seu-repositorio/
+│
+├── index.html              (Seu cardápio principal)
+├── gerar-qrcode.html       (Gerador de QR Code)
+├── qrcode/
+│   └── qrcode-cardapio.png (QR Code gerado)
+└── README.md
+Passo 4: Como usar o sistema dinâmico
+Salve o arquivo gerar-qrcode.html no seu repositório
+
+Acesse: https://seuusuario.github.io/cardapio/gerar-qrcode.html
+
+Clique em "Atualizar QR Code" sempre que modificar o cardápio
+
+Baixe o novo QR Code e imprima
+
+Passo 5: Deploy automático (OPCIONAL)
+Crie um arquivo .github/workflows/update-qrcode.yml:
+
+yaml
+name: Update QR Code on Change
+
+on:
+  push:
+    paths:
+      - 'index.html'
+    branches: [ main ]
+
+jobs:
+  update-qrcode:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      
+      - name: Update timestamp
+        run: |
+          echo "QR Code atualizado em: $(date)" > last-update.txt
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add last-update.txt
+          git commit -m "Auto-update QR Code timestamp" || exit 0
+          git push
+🎯 VANTAGENS DO SISTEMA DINÂMICO:
+✅ Atualização automática - QR Code sempre atualizado
+✅ Fácil de usar - Interface simples
+✅ Download direto - Baixe e imprima
+✅ Rastreamento - Saber quando foi atualizado
+✅ Customizável - Cores da sua marca
+
+📱 PARA USAR IMEDIATAMENTE:
+Copie o código do gerar-qrcode.html
+
+Salve no seu repositório GitHub
+
+Acesse via GitHub Pages
+
+Gere seu primeiro QR Code!
+
+Quer que eu ajude a implementar alguma parte específica? 🚀
+
+é preciso adicionar esse codigo ao script html do cardapio?
+NÃO, não é preciso! Deixe-me explicar a forma correta:
+
+✅ FORMA CORRETA E SIMPLES:
+Método 1: Arquivo SEPARADO (Recomendado)
+Crie um arquivo gerar-qrcode.html separado do seu cardápio.
+
+Vantagens:
+
+✅ Não mexe no cardápio principal
+
+✅ Funciona independentemente
+
+✅ Mais organizado
+
+✅ Não afeta performance do cardápio
+
+Método 2: Se quiser TUDO em um arquivo só
+Se realmente quiser tudo junto, adicione este código NO FINAL do seu index.html (antes do </body>):
+
+html
+<!-- ADICIONE ESTE CÓDIGO NO FINAL DO SEU INDEX.HTML -->
+<div style="text-align: center; margin: 2rem 0; padding: 1rem; background: #f0e6ff; border-radius: 10px;">
+    <h3 style="color: #6d3b9e;">📱 QR Code do Cardápio</h3>
+    <div id="qrcode-cardapio" style="margin: 1rem auto; display: inline-block;"></div>
+    <br>
+    <button onclick="baixarQRCode()" style="background: #6d3b9e; color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer;">
+        📥 Baixar QR Code
+    </button>
+    <p style="font-size: 0.9rem; margin-top: 0.5rem; color: #666;">
+        Atualizado em: <span id="data-atualizacao"></span>
+    </p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+<script>
+    // Gerar QR Code automaticamente
+    function gerarQRCodeCardapio() {
+        const urlAtual = window.location.href;
+        const qrcodeContainer = document.getElementById('qrcode-cardapio');
+        
+        QRCode.toCanvas(qrcodeContainer, urlAtual, {
+            width: 150,
+            margin: 1,
+            color: {
+                dark: '#6d3b9e',
+                light: '#ffffff'
+            }
+        });
+        
+        // Atualizar data
+        document.getElementById('data-atualizacao').textContent = new Date().toLocaleString('pt-BR');
+    }
+    
+    // Baixar QR Code
+    function baixarQRCode() {
+        const canvas = document.getElementById('qrcode-cardapio').querySelector('canvas');
+        if (canvas) {
+            const link = document.createElement('a');
+            link.download = 'qrcode-cardapio-ylma.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+    }
+    
+    // Gerar quando a página carregar
+    document.addEventListener('DOMContentLoaded', gerarQRCodeCardapio);
+</script>
