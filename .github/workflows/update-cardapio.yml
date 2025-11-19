@@ -1,0 +1,45 @@
+yaml
+name: 🚀 Atualizar Cardápio Automaticamente
+
+on:
+  push:
+    paths:
+      - 'data/cardapio.csv'
+  workflow_dispatch:
+  schedule:
+    - cron: '0 6,12,18 * * *'  # Atualiza 3x ao dia (6h, 12h, 18h)
+
+jobs:
+  update-cardapio:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+    - name: 📥 Baixar código
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        
+    - name: ⚙️ Configurar Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: 📦 Instalar dependências
+      run: npm install
+      
+    - name: 🛠️ Processar CSV
+      run: node scripts/process-csv.js
+      
+    - name: 📱 Gerar QR Code
+      run: node scripts/generate-qrcode.js
+      
+    - name: 💾 Salvar mudanças
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add index.html qrcode.png
+        git diff --staged --quiet || git commit -m "🤖 Atualização automática: $(date +'%d/%m/%Y %H:%M')"
+        git push
