@@ -1,5 +1,5 @@
 yaml
-name: Update Menu
+name:Update Menu
 
 on:
   push:
