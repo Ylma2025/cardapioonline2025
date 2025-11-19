@@ -29,7 +29,7 @@ function processCSV() {
 }
 
 function organizeData(data) {
-    const categorias = {};
+    const categorias = {}; 
     
     data.forEach(item => {
         // Verificar se item está disponível para venda
