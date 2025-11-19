@@ -1,44 +1,36 @@
 yaml
-name: Atualizar Cardapio Automaticamente
+name: Update Menu
 
 on:
   push:
     paths:
       - 'data/cardapio.csv'
-  workflow_dispatch:
-  schedule:
-    - cron: '0 6,12,18 * * *'
 
 jobs:
-  update-cardapio:
+  build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
+    
     steps:
-      - name: Baixar codigo
-        uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+    - uses: actions/checkout@v4
+    
+    - name: Setup Node
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+    
+    - name: Install dependencies
+      run: npm install
       
-      - name: Configurar Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-          cache: 'npm'
+    - name: Process CSV
+      run: node scripts/process-csv.js
       
-      - name: Instalar dependencias
-        run: npm install
+    - name: Generate QR Code
+      run: node scripts/generate-qrcode.js
       
-      - name: Processar CSV
-        run: node scripts/process-csv.js
-      
-      - name: Gerar QR Code
-        run: node scripts/generate-qrcode.js
-      
-      - name: Salvar mudancas
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add index.html qrcode.png
-          git diff --staged --quiet || git commit -m "Atualizacao automatica"
-          git push
+    - name: Commit changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add index.html qrcode.png
+        git commit -m "Update menu" || exit 0
+        git push
