@@ -1,5 +1,5 @@
 yaml
-name: Atualizar Cardápio Automaticamente
+name: Atualizar Cardapio Automaticamente
 
 on:
   push:
@@ -14,32 +14,31 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-    
     steps:
-    - name: Baixar código
-      uses: actions/checkout@v4
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        
-    - name: Configurar Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '18'
-        cache: 'npm'
-        
-    - name: Instalar dependências
-      run: npm install
+      - name: Baixar codigo
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
       
-    - name: Processar CSV
-      run: node scripts/process-csv.js
+      - name: Configurar Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
       
-    - name: Gerar QR Code
-      run: node scripts/generate-qrcode.js
+      - name: Instalar dependencias
+        run: npm install
       
-    - name: Salvar mudanças
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add index.html qrcode.png
-        git diff --staged --quiet || git commit -m "Atualização automática: $(date +'%d/%m/%Y %H:%M')"
-        git push
+      - name: Processar CSV
+        run: node scripts/process-csv.js
+      
+      - name: Gerar QR Code
+        run: node scripts/generate-qrcode.js
+      
+      - name: Salvar mudancas
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add index.html qrcode.png
+          git diff --staged --quiet || git commit -m "Atualizacao automatica"
+          git push
