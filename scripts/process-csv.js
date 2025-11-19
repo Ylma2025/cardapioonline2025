@@ -1,6 +1,6 @@
 javascript
 const fs = require('fs');
-const csv = require('csv-parser');
+const csv = require('csv-parser'); 
 
 // Configurações do seu cardápio
 const CONFIG = {
