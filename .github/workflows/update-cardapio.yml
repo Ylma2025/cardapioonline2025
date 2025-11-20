@@ -1,36 +1,29 @@
 yaml
-name:Update Menu
- 
+name: Update Cardapio and Deploy
+
 on:
   push:
     paths:
-      - 'data/cardapio.csv'
+      - '**.csv'
+      - '**.json'
+  workflow_dispatch:
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     
     steps:
-    - uses: actions/checkout@v4
-    
-    - name: Setup Node
-      uses: actions/setup-node@v4
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Setup Pages
+      uses: actions/configure-pages@v4
+      
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v3
       with:
-        node-version: '18'
-    
-    - name: Install dependencies
-      run: npm install
-      
-    - name: Process CSV
-      run: node scripts/process-csv.js
-      
-    - name: Generate QR Code
-      run: node scripts/generate-qrcode.js
-      
-    - name: Commit changes
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add index.html qrcode.png
-        git commit -m "Update menu" || exit 0
-        git push
+        path: '.'
+        
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4
