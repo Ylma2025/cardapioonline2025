@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ylma Cake's & Cia - Cardápio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f8f4ff 0%, #ffffff 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #8b5fad 0%, #6d3b9e 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(109, 59, 158, 0.3);
+        }
+
+        .logo h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .logo p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #6d3b9e 0%, #8b5fad 100%);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .contato {
+            background: white;
+            padding: 2rem 0;
+            border-bottom: 3px solid #8b5fad;
+        }
+
+        .contato-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .contato-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .filtros {
+            background: white;
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .filtros .container {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filtro-btn {
+            background: #f0e6ff;
+            border: 2px solid #8b5fad;
+            color: #6d3b9e;
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .filtro-btn:hover,
+        .filtro-btn.active {
+            background: #8b5fad;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .cardapio {
+            padding: 3rem 0;
+        }
+
+        .cardapio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .categoria-section {
+            margin-bottom: 3rem;
+        }
+
+        .categoria-titulo {
+            font-size: 1.8rem;
+            color: #6d3b9e;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #8b5fad;
+        }
+
+        .item-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-left: 4px solid #8b5fad;
+        }
+
+        .item-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(139, 95, 173, 0.2);
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .item-nome {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #333;
+            flex: 1;
+        }
+
+        .item-preco {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #6d3b9e;
+            background: #f0e6ff;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+        }
+
+        .item-descricao {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            font-size: 1.2rem;
+            color: #6d3b9e;
+        }
+
+        .error {
+            text-align: center;
+            padding: 3rem;
+            color: #e74c3c;
+            font-size: 1.2rem;
+        }
+
+        .sem-estoque {
+            opacity: 0.7;
+            position: relative;
+        }
+
+        .sem-estoque::after {
+            content: "SEM ESTOQUE";
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #e74c3c;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .logo h1 { font-size: 2rem; }
+            .hero h2 { font-size: 1.8rem; }
+            .contato-info { flex-direction: column; gap: 1rem; }
+            .cardapio-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>Ylma Cake's & Cia</h1>
+                <p>Sabores que encantam</p>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h2>Cardápio Digital</h2>
+            <p>Deliciosas opções para todos os momentos</p>
+        </div>
+    </section>
+
+    <section class="contato">
+        <div class="container">
+            <div class="contato-info">
+                <div class="contato-item">
+                    <span>📞</span>
+                    <p>(71) 98864-0247</p>
+                </div>
+                <div class="contato-item">
+                    <span>📍</span>
+                    <p>Praça do Baixo Formoso, s/n<br>Porto de Sauipe - Entre Rios - BA</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="filtros">
+        <div class="container">
+            <button class="filtro-btn active" data-categoria="all">Todos</button>
+            <button class="filtro-btn" data-categoria="Café da Manhã">Café da Manhã</button>
+            <button class="filtro-btn" data-categoria="Lanches">Lanches</button>
+            <button class="filtro-btn" data-categoria="Bebidas">Bebidas</button>
+            <button class="filtro-btn" data-categoria="Petiscos">Petiscos</button>
+            <button class="filtro-btn" data-categoria="Pastel">Pastel</button>
+            <button class="filtro-btn" data-categoria="Pizza">Pizza</button>
+        </div>
+    </section>
+
+    <section class="cardapio">
+        <div class="container">
+            <div id="cardapio-container" class="cardapio-grid">
+                <div class="loading">
+                    🔄 Carregando cardápio...
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Ylma Cake's & Cia - Todos os direitos reservados</p>
+        </div>
+    </footer>
+
+    <script>
+        // URL do arquivo CSV no GitHub
+        const CSV_URL = 'https://raw.githubusercontent.com/ylma2025/cardapioonline2025/main/cardapio.csv';
+        
+        // Cache para melhor performance
+        let cache = {
+            data: null,
+            timestamp: null,
+            timeout: 5 * 60 * 1000 // 5 minutos
+        };
+
+        function formatarPreco(preco) {
+            if (preco === 'variable' || preco === '') return 'Sob Consulta';
+            const numero = parseFloat(preco);
+            return isNaN(numero) ? preco : `R$ ${numero.toFixed(2).replace('.', ',')}`;
+        }
+
+        function limparDescricao(descricao) {
+            if (!descricao) return '';
+            // Remove tags HTML e espaços extras
+            return descricao.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim();
+        }
+
+        async function carregarCardapio() {
+            const container = document.getElementById('cardapio-container');
+            
+            try {
+                // Verificar cache
+                if (cache.data && cache.timestamp && (Date.now() - cache.timestamp) < cache.timeout) {
+                    console.log('Usando dados em cache');
+                    renderizarCardapio(cache.data);
+                    return;
+                }
+
+                container.innerHTML = '<div class="loading">🔄 Atualizando cardápio...</div>';
+
+                // Buscar CSV do GitHub
+                const response = await fetch(CSV_URL);
+                
+                if (!response.ok) {
+                    throw new Error(`Erro ao carregar: ${response.status}`);
+                }
+                
+                const csvText = await response.text();
+                const cardapioData = processarCSV(csvText);
+                
+                // Atualizar cache
+                cache.data = cardapioData;
+                cache.timestamp = Date.now();
+                
+                renderizarCardapio(cardapioData);
+                
+            } catch (error) {
+                console.error('Erro ao carregar cardápio:', error);
+                container.innerHTML = `
+                    <div class="error">
+                        ❌ Erro ao carregar cardápio: ${error.message}
+                        <br><br>
+                        <button onclick="carregarCardapio()" style="
+                            padding: 10px 20px;
+                            background: #8b5fad;
+                            color: white;
+                            border: none;
+                            border-radius: 5px;
+                            cursor: pointer;
+                        ">🔄 Tentar Novamente</button>
+                    </div>
+                `;
+            }
+        }
+
+        function processarCSV(csvText) {
+            const linhas = csvText.split('\n').filter(linha => linha.trim() !== '');
+            const headers = linhas[0].split(',').map(h => h.trim());
+            
+            const cardapioData = {};
+            
+            for (let i = 1; i < linhas.length; i++) {
+                const valores = parseCSVLinha(linhas[i]);
+                const item = {};
+                
+                for (let j = 0; j < headers.length; j++) {
+                    item[headers[j]] = valores[j] ? valores[j].trim() : '';
+                }
+                
+                // Processar apenas itens disponíveis para venda
+                if (item['Available for sale [Ylma Cake\'s]'] === 'Y') {
+                    const categoria = item.Category || 'Geral';
+                    const estoque = parseFloat(item['In stock [Ylma Cake\'s]']) || 0;
+                    
+                    const itemFormatado = {
+                        nome: item.Name || 'Item sem nome',
+                        descricao: limparDescricao(item.Description),
+                        preco: item['Price [Ylma Cake\'s]'] || '0',
+                        estoque: estoque,
+                        semEstoque: estoque <= 0
+                    };
+                    
+                    // Adicionar à categoria correspondente
+                    if (!cardapioData[categoria]) {
+                        cardapioData[categoria] = [];
+                    }
+                    cardapioData[categoria].push(itemFormatado);
+                }
+            }
+            
+            return cardapioData;
+        }
+
+        function parseCSVLinha(linha) {
+            const valores = [];
+            let valorAtual = '';
+            let dentroDeAspas = false;
+            
+            for (let i = 0; i < linha.length; i++) {
+                const char = linha[i];
+                
+                if (char === '"') {
+                    dentroDeAspas = !dentroDeAspas;
+                } else if (char === ',' && !dentroDeAspas) {
+                    valores.push(valorAtual);
+                    valorAtual = '';
+                } else {
+                    valorAtual += char;
+                }
+            }
+            
+            valores.push(valorAtual);
+            return valores;
+        }
+
+        function renderizarCardapio(cardapioData, categoriaFiltro = 'all') {
+            const container = document.getElementById('cardapio-container');
+            container.innerHTML = '';
+
+            let temItens = false;
+
+            Object.entries(cardapioData).forEach(([categoria, itens]) => {
+                if (categoriaFiltro !== 'all' && categoriaFiltro !== categoria) return;
+
+                // Só mostra categoria se tiver itens
+                if (itens.length > 0) {
+                    temItens = true;
+                    
+                    const categoriaSection = document.createElement('div');
+                    categoriaSection.className = 'categoria-section';
+                    
+                    const titulo = document.createElement('h2');
+                    titulo.className = 'categoria-titulo';
+                    titulo.textContent = categoria;
+                    categoriaSection.appendChild(titulo);
+
+                    const grid = document.createElement('div');
+                    grid.className = 'cardapio-grid';
+
+                    itens.forEach(item => {
+                        const itemCard = document.createElement('div');
+                        itemCard.className = `item-card ${item.semEstoque ? 'sem-estoque' : ''}`;
+                        
+                        itemCard.innerHTML = `
+                            <div class="item-header">
+                                <h3 class="item-nome">${item.nome}</h3>
+                                <span class="item-preco">${formatarPreco(item.preco)}</span>
+                            </div>
+                            ${item.descricao ? `<p class="item-descricao">${item.descricao}</p>` : ''}
+                            ${item.estoque > 0 ? `<small style="color: #27ae60;">✅ Em estoque</small>` : ''}
+                        `;
+
+                        grid.appendChild(itemCard);
+                    });
+
+                    categoriaSection.appendChild(grid);
+                    container.appendChild(categoriaSection);
+                }
+            });
+
+            if (!temItens) {
+                container.innerHTML = '<div class="error">📝 Nenhum item disponível no momento</div>';
+            }
+        }
+
+        // Filtros
+        function aplicarFiltro(categoria) {
+            document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+            renderizarCardapio(cache.data, categoria);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Configurar eventos dos filtros
+            document.querySelectorAll('.filtro-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    aplicarFiltro(this.getAttribute('data-categoria'));
+                });
+            });
+
+            // Carregar cardápio inicial
+            carregarCardapio();
+
+            // Atualizar automaticamente a cada 5 minutos
+            setInterval(carregarCardapio, 5 * 60 * 1000);
+        });
+
+        // Recarregar quando a página ganha foco (usuário volta para a aba)
+        document.addEventListener('visibilitychange', function() {
+            if (!document.hidden) {
+                carregarCardapio();
+            }
+        });
+    </script>
+</body>
+</html>
