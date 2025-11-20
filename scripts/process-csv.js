@@ -19,7 +19,7 @@ function processCSV() {
         .pipe(csv())
         .on('data', (data) => results.push(data))
         .on('end', () => {
-            console.log(`✅ CSV processado: ${results.length} itens encontrados`);
+            console.log(`✅ CSV processado: ${results.length} itens encontrados`); 
             const cardapioData = organizeData(results);
             generateHTML(cardapioData);
         })
