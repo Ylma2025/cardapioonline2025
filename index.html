@@ -1,4 +1,4 @@
-html 
+html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -143,19 +143,9 @@ html
             position: relative;
         }
 
-        .item-card.indisponivel {
-            opacity: 0.7;
-            border-left-color: #ccc;
-        }
-
         .item-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 25px rgba(139, 95, 173, 0.2);
-        }
-
-        .item-card.indisponivel:hover {
-            transform: none;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
         .item-header {
@@ -181,27 +171,10 @@ html
             border-radius: 20px;
         }
 
-        .item-preco.indisponivel {
-            color: #999;
-            background: #f5f5f5;
-        }
-
         .item-descricao {
             color: #666;
             margin-bottom: 1rem;
             line-height: 1.5;
-        }
-
-        .indisponivel-badge {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: #ff6b6b;
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            font-weight: 500;
         }
 
         .footer {
@@ -277,16 +250,16 @@ html
     </footer>
 
     <script>
-        // DADOS DO CSV - TODOS OS ITENS (DISPONÍVEIS E INDISPONÍVEIS)
+        // DADOS DO CSV - TODOS OS ITENS DISPONÍVEIS
         const cardapioData = {
             "Café da Manhã": [
                 { "nome": "Aipim Cozido - Charque", "descricao": "Carne, ovo, tomate, alface e cebola", "preco": "30.00", "disponivel": true },
-                { "nome": "Aipim Cozido - Calabresa", "descricao": "Aipim, calabresa, ovo, tomate, alface e cebola", "preco": "30.00", "disponivel": false },
-                { "nome": "Aipim Cozido - Carne do Sol", "descricao": "Carne, Ovo, tomate, alface e cebola", "preco": "30.00", "disponivel": false },
-                { "nome": "Aipim Cozido - Fumeiro", "descricao": "Carne de fumeiro, ovo, tomate, alface, cebola", "preco": "30.00", "disponivel": false },
-                { "nome": "Aipim Cozido - Ovos", "descricao": "Ovos, tomate, alface, cebola", "preco": "25.00", "disponivel": false },
-                { "nome": "Banana da Terra - Porção", "descricao": "Porção de banana da terra", "preco": "18.00", "disponivel": false },
-                { "nome": "Batata Doce - Porção", "descricao": "Porção de batata doce cozida", "preco": "13.00", "disponivel": false },
+                { "nome": "Aipim Cozido - Calabresa", "descricao": "Aipim, calabresa, ovo, tomate, alface e cebola", "preco": "30.00", "disponivel": true },
+                { "nome": "Aipim Cozido - Carne do Sol", "descricao": "Carne, Ovo, tomate, alface e cebola", "preco": "30.00", "disponivel": true },
+                { "nome": "Aipim Cozido - Fumeiro", "descricao": "Carne de fumeiro, ovo, tomate, alface, cebola", "preco": "30.00", "disponivel": true },
+                { "nome": "Aipim Cozido - Ovos", "descricao": "Ovos, tomate, alface, cebola", "preco": "25.00", "disponivel": true },
+                { "nome": "Banana da Terra - Porção", "descricao": "Porção de banana da terra", "preco": "18.00", "disponivel": true },
+                { "nome": "Batata Doce - Porção", "descricao": "Porção de batata doce cozida", "preco": "13.00", "disponivel": true },
                 { "nome": "Cuscuz com Leite de Côco", "descricao": "", "preco": "18.00", "disponivel": true },
                 { "nome": "Cuscuz de Tapioca", "descricao": "Tapioca, leite de côco", "preco": "13.00", "disponivel": true },
                 { "nome": "Cuscuz Temperado - Calabresa", "descricao": "Calabresa, ovo, alface tomate, cebola", "preco": "30.00", "disponivel": true },
@@ -295,17 +268,17 @@ html
                 { "nome": "Cuscuz Temperado - Charque", "descricao": "Charque, ovo, tomate, alface e cebola", "preco": "30.00", "disponivel": true },
                 { "nome": "Cuscuz Temperado - Fumeiro", "descricao": "", "preco": "30.00", "disponivel": true },
                 { "nome": "Cuscuz Temperado - Ovos", "descricao": "Dois ovos, tomate, alface e cebola", "preco": "25.00", "disponivel": true },
-                { "nome": "Hambúrguer Artesanal", "descricao": "Pão especial, carne, calabresa, bacon, queijo, presunto, tomate, alface e cebola", "preco": "30.00", "disponivel": false },
+                { "nome": "Hambúrguer Artesanal", "descricao": "Pão especial, carne, calabresa, bacon, queijo, presunto, tomate, alface e cebola", "preco": "30.00", "disponivel": true },
                 { "nome": "Misto Quente", "descricao": "Pão, queijo e presunto", "preco": "12.00", "disponivel": true },
                 { "nome": "Omelete de Carne", "descricao": "", "preco": "24.00", "disponivel": true },
                 { "nome": "Omelete de Frango", "descricao": "", "preco": "22.00", "disponivel": true },
                 { "nome": "Ovo Frito", "descricao": "Ovo frito", "preco": "3.00", "disponivel": true },
                 { "nome": "Sanduíche de Frango", "descricao": "Pão baguete, frango, bacon, calabresa, mussarela, tomate, alface e cebola", "preco": "28.00", "disponivel": true },
                 { "nome": "Sanduíche de Picanha", "descricao": "Pão baguete, picanha, bacon, requeijão, tomate, alface e cebola", "preco": "35.00", "disponivel": true },
-                { "nome": "Sanduíche de Toscana", "descricao": "Pão baguete, toscana, queijo, tomate, alface e cebola", "preco": "22.00", "disponivel": false }
+                { "nome": "Sanduíche de Toscana", "descricao": "Pão baguete, toscana, queijo, tomate, alface e cebola", "preco": "22.00", "disponivel": true }
             ],
             "Lanches": [
-                { "nome": "Bolo (fatia)", "descricao": "", "preco": "10.00", "disponivel": false },
+                { "nome": "Bolo (fatia)", "descricao": "", "preco": "10.00", "disponivel": true },
                 { "nome": "Bolo de Pote", "descricao": "", "preco": "8.00", "disponivel": true },
                 { "nome": "Cafe Expresso", "descricao": "", "preco": "5.00", "disponivel": true },
                 { "nome": "Coxinha", "descricao": "", "preco": "8.00", "disponivel": true },
@@ -382,18 +355,18 @@ html
                 { "nome": "Caldo de Sururu", "descricao": "", "preco": "15.00", "disponivel": true },
                 { "nome": "Camarão Encapado", "descricao": "", "preco": "35.00", "disponivel": true },
                 { "nome": "Codorna", "descricao": "", "preco": "18.00", "disponivel": true },
-                { "nome": "Escondidinho de Camarão", "descricao": "", "preco": "25.00", "disponivel": false },
-                { "nome": "Escondidinho de Carne do Sol", "descricao": "", "preco": "22.00", "disponivel": false }
+                { "nome": "Escondidinho de Camarão", "descricao": "", "preco": "25.00", "disponivel": true },
+                { "nome": "Escondidinho de Carne do Sol", "descricao": "", "preco": "22.00", "disponivel": true }
             ],
             "Pastel": [
-                { "nome": "Pastel de Camarão", "descricao": "", "preco": "19.00", "disponivel": false },
+                { "nome": "Pastel de Camarão", "descricao": "", "preco": "19.00", "disponivel": true },
                 { "nome": "Pastel de Carne", "descricao": "", "preco": "14.00", "disponivel": true },
                 { "nome": "Pastel de Carne com Queijo", "descricao": "", "preco": "16.00", "disponivel": true },
                 { "nome": "Pastel de Carne Seca", "descricao": "", "preco": "19.00", "disponivel": true },
                 { "nome": "Pastel de Frango", "descricao": "", "preco": "12.00", "disponivel": true },
-                { "nome": "Pastel de Toscana com Requeijão", "descricao": "", "preco": "15.00", "disponivel": false },
+                { "nome": "Pastel de Toscana com Requeijão", "descricao": "", "preco": "15.00", "disponivel": true },
                 { "nome": "Pastel Misto", "descricao": "", "preco": "14.00", "disponivel": true },
-                { "nome": "Pastel Três Queijos", "descricao": "", "preco": "17.00", "disponivel": false }
+                { "nome": "Pastel Três Queijos", "descricao": "", "preco": "17.00", "disponivel": true }
             ],
             "Pizza": [
                 { "nome": "Pizza de Atum (brotinho)", "descricao": "molho de tomate e mussarela e cebola", "preco": "19.00", "disponivel": true },
@@ -440,19 +413,15 @@ html
 
                 itens.forEach(item => {
                     const itemCard = document.createElement('div');
-                    itemCard.className = `item-card ${!item.disponivel ? 'indisponivel' : ''}`;
+                    itemCard.className = 'item-card';
                     
                     let itemHTML = `
                         <div class="item-header">
                             <h3 class="item-nome">${item.nome}</h3>
-                            <span class="item-preco ${!item.disponivel ? 'indisponivel' : ''}">${formatarPreco(item.preco)}</span>
+                            <span class="item-preco">${formatarPreco(item.preco)}</span>
                         </div>
                         ${item.descricao ? `<p class="item-descricao">${item.descricao}</p>` : ''}
                     `;
-                    
-                    if (!item.disponivel) {
-                        itemHTML += `<div class="indisponivel-badge">Indisponível</div>`;
-                    }
                     
                     itemCard.innerHTML = itemHTML;
                     grid.appendChild(itemCard);
@@ -476,6 +445,4 @@ html
         });
     </script>
 </body>
-
 </html>
-
