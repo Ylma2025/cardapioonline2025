@@ -1,3 +1,5 @@
+
+html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -129,7 +131,7 @@
             color: #6d3b9e;
             margin-bottom: 1.5rem;
             padding-bottom: 0.5rem;
-            border-bottom: 3px solid #8b5fad;
+            border-bottom: 3px solid #8b3b9e;
         }
 
         .item-card {
@@ -139,11 +141,22 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
             border-left: 4px solid #8b5fad;
+            position: relative;
+        }
+
+        .item-card.indisponivel {
+            opacity: 0.7;
+            border-left-color: #ccc;
         }
 
         .item-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 25px rgba(139, 95, 173, 0.2);
+        }
+
+        .item-card.indisponivel:hover {
+            transform: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
         .item-header {
@@ -169,10 +182,27 @@
             border-radius: 20px;
         }
 
+        .item-preco.indisponivel {
+            color: #999;
+            background: #f5f5f5;
+        }
+
         .item-descricao {
             color: #666;
             margin-bottom: 1rem;
             line-height: 1.5;
+        }
+
+        .indisponivel-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff6b6b;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
         }
 
         .footer {
@@ -248,124 +278,139 @@
     </footer>
 
     <script>
-        // DADOS CORRIGIDOS - APENAS ITENS DISPONÍVEIS
+        // DADOS DO CSV - TODOS OS ITENS (DISPONÍVEIS E INDISPONÍVEIS)
         const cardapioData = {
             "Café da Manhã": [
-                { "nome": "Aipim Cozido - Charque", "descricao": "Carne, ovo, tomate, alface e cebola", "preco": "30.00" },
-                { "nome": "Cuscuz com Leite de Côco", "descricao": "", "preco": "18.00" },
-                { "nome": "Cuscuz de Tapioca", "descricao": "Tapioca, leite de côco", "preco": "13.00" },
-                { "nome": "Cuscuz Temperado - Calabresa", "descricao": "Calabresa, ovo, alface tomate, cebola", "preco": "30.00" },
-                { "nome": "Cuscuz Temperado - Carne do Sol", "descricao": "Carne do Sol, ovo, alface, tomate, cebola", "preco": "30.00" },
-                { "nome": "Cuscuz Temperado - Carne Seca", "descricao": "Carne seca, ovo, queijo coalho, tomate e cebola", "preco": "35.00" },
-                { "nome": "Cuscuz Temperado - Charque", "descricao": "Charque, ovo, tomate, alface e cebola", "preco": "30.00" },
-                { "nome": "Cuscuz Temperado - Fumeiro", "descricao": "", "preco": "30.00" },
-                { "nome": "Cuscuz Temperado - Ovos", "descricao": "Dois ovos, tomate, alface e cebola", "preco": "25.00" },
-                { "nome": "Hambúrguer Artesanal", "descricao": "Pão especial, carne, calabresa, bacon, queijo, presunto, tomate, alface e cebola", "preco": "30.00" },
-                { "nome": "Misto Quente", "descricao": "Pão, queijo e presunto", "preco": "12.00" },
-                { "nome": "Omelete de Carne", "descricao": "", "preco": "24.00" },
-                { "nome": "Omelete de Frango", "descricao": "", "preco": "22.00" },
-                { "nome": "Ovo Frito", "descricao": "Ovo frito", "preco": "3.00" },
-                { "nome": "Sanduíche de Frango", "descricao": "Pão baguete, frango, bacon, calabresa, mussarela, tomate, alface e cebola", "preco": "28.00" },
-                { "nome": "Sanduíche de Picanha", "descricao": "Pão baguete, picanha, bacon, requeijão, tomate, alface e cebola", "preco": "35.00" },
-                { "nome": "Sanduíche de Toscana", "descricao": "Pão baguete, toscana, queijo, tomate, alface e cebola", "preco": "22.00" }
+                { "nome": "Aipim Cozido - Charque", "descricao": "Carne, ovo, tomate, alface e cebola", "preco": "30.00", "disponivel": true },
+                { "nome": "Aipim Cozido - Calabresa", "descricao": "Aipim, calabresa, ovo, tomate, alface e cebola", "preco": "30.00", "disponivel": false },
+                { "nome": "Aipim Cozido - Carne do Sol", "descricao": "Carne, Ovo, tomate, alface e cebola", "preco": "30.00", "disponivel": false },
+                { "nome": "Aipim Cozido - Fumeiro", "descricao": "Carne de fumeiro, ovo, tomate, alface, cebola", "preco": "30.00", "disponivel": false },
+                { "nome": "Aipim Cozido - Ovos", "descricao": "Ovos, tomate, alface, cebola", "preco": "25.00", "disponivel": false },
+                { "nome": "Banana da Terra - Porção", "descricao": "Porção de banana da terra", "preco": "18.00", "disponivel": false },
+                { "nome": "Batata Doce - Porção", "descricao": "Porção de batata doce cozida", "preco": "13.00", "disponivel": false },
+                { "nome": "Cuscuz com Leite de Côco", "descricao": "", "preco": "18.00", "disponivel": true },
+                { "nome": "Cuscuz de Tapioca", "descricao": "Tapioca, leite de côco", "preco": "13.00", "disponivel": true },
+                { "nome": "Cuscuz Temperado - Calabresa", "descricao": "Calabresa, ovo, alface tomate, cebola", "preco": "30.00", "disponivel": true },
+                { "nome": "Cuscuz Temperado - Carne do Sol", "descricao": "Carne do Sol, ovo, alface, tomate, cebola", "preco": "30.00", "disponivel": true },
+                { "nome": "Cuscuz Temperado - Carne Seca", "descricao": "Carne seca, ovo, queijo coalho, tomate e cebola", "preco": "35.00", "disponivel": true },
+                { "nome": "Cuscuz Temperado - Charque", "descricao": "Charque, ovo, tomate, alface e cebola", "preco": "30.00", "disponivel": true },
+                { "nome": "Cuscuz Temperado - Fumeiro", "descricao": "", "preco": "30.00", "disponivel": true },
+                { "nome": "Cuscuz Temperado - Ovos", "descricao": "Dois ovos, tomate, alface e cebola", "preco": "25.00", "disponivel": true },
+                { "nome": "Hambúrguer Artesanal", "descricao": "Pão especial, carne, calabresa, bacon, queijo, presunto, tomate, alface e cebola", "preco": "30.00", "disponivel": false },
+                { "nome": "Misto Quente", "descricao": "Pão, queijo e presunto", "preco": "12.00", "disponivel": true },
+                { "nome": "Omelete de Carne", "descricao": "", "preco": "24.00", "disponivel": true },
+                { "nome": "Omelete de Frango", "descricao": "", "preco": "22.00", "disponivel": true },
+                { "nome": "Ovo Frito", "descricao": "Ovo frito", "preco": "3.00", "disponivel": true },
+                { "nome": "Sanduíche de Frango", "descricao": "Pão baguete, frango, bacon, calabresa, mussarela, tomate, alface e cebola", "preco": "28.00", "disponivel": true },
+                { "nome": "Sanduíche de Picanha", "descricao": "Pão baguete, picanha, bacon, requeijão, tomate, alface e cebola", "preco": "35.00", "disponivel": true },
+                { "nome": "Sanduíche de Toscana", "descricao": "Pão baguete, toscana, queijo, tomate, alface e cebola", "preco": "22.00", "disponivel": false }
             ],
             "Lanches": [
-                { "nome": "Cafe Expresso", "descricao": "", "preco": "5.00" },
-                { "nome": "Coxinha", "descricao": "", "preco": "8.00" },
-                { "nome": "Coxinha Especial", "descricao": "Com catupiry ou outros", "preco": "10.00" },
-                { "nome": "Cupcake", "descricao": "", "preco": "5.00" },
-                { "nome": "Empada", "descricao": "", "preco": "8.00" },
-                { "nome": "Empada Doce", "descricao": "", "preco": "8.00" },
-                { "nome": "Kibe Frito", "descricao": "", "preco": "12.00" },
-                { "nome": "Mousse", "descricao": "", "preco": "6.00" },
-                { "nome": "Pao de Queijo", "descricao": "", "preco": "7.00" },
-                { "nome": "Pão Delícia", "descricao": "", "preco": "11.00" },
-                { "nome": "Pastel de Forno", "descricao": "", "preco": "8.00" },
-                { "nome": "Pudim", "descricao": "", "preco": "5.00" },
-                { "nome": "Torta (fatia)", "descricao": "", "preco": "18.00" },
-                { "nome": "Vitamina (diversas)", "descricao": "", "preco": "12.00" }
+                { "nome": "Bolo (fatia)", "descricao": "", "preco": "10.00", "disponivel": false },
+                { "nome": "Bolo de Pote", "descricao": "", "preco": "8.00", "disponivel": true },
+                { "nome": "Cafe Expresso", "descricao": "", "preco": "5.00", "disponivel": true },
+                { "nome": "Coxinha", "descricao": "", "preco": "8.00", "disponivel": true },
+                { "nome": "Coxinha Especial", "descricao": "Com catupiry ou outros", "preco": "10.00", "disponivel": true },
+                { "nome": "Cupcake", "descricao": "", "preco": "5.00", "disponivel": true },
+                { "nome": "Empada", "descricao": "", "preco": "8.00", "disponivel": true },
+                { "nome": "Empada Doce", "descricao": "", "preco": "8.00", "disponivel": true },
+                { "nome": "Kibe Frito", "descricao": "", "preco": "12.00", "disponivel": true },
+                { "nome": "Mousse de Limao", "descricao": "", "preco": "8.00", "disponivel": true },
+                { "nome": "Mousse de Maracujá", "descricao": "", "preco": "8.00", "disponivel": true },
+                { "nome": "Pao de Queijo", "descricao": "", "preco": "7.00", "disponivel": true },
+                { "nome": "Pão Delícia", "descricao": "", "preco": "11.00", "disponivel": true },
+                { "nome": "Pastel de Forno", "descricao": "", "preco": "8.00", "disponivel": true },
+                { "nome": "Pudim", "descricao": "", "preco": "5.00", "disponivel": true },
+                { "nome": "Torta (fatia)", "descricao": "", "preco": "18.00", "disponivel": true },
+                { "nome": "Torta de Limão", "descricao": "Torta sabor limão", "preco": "14.00", "disponivel": true },
+                { "nome": "Torta de Maracujá", "descricao": "Torta com sabor maracujá", "preco": "14.00", "disponivel": true },
+                { "nome": "Vitamina (diversas)", "descricao": "", "preco": "12.00", "disponivel": true }
             ],
             "Bebidas": [
-                { "nome": "Água com Gás 500ml", "descricao": "", "preco": "5.00" },
-                { "nome": "Água sem Gás 500ml", "descricao": "", "preco": "4.00" },
-                { "nome": "Água Tônica", "descricao": "", "preco": "6.50" },
-                { "nome": "Aquarius Fresh", "descricao": "", "preco": "7.50" },
-                { "nome": "Café com Leite (média)", "descricao": "Xícara média de café", "preco": "6.00" },
-                { "nome": "Café com Leite (pequeno)", "descricao": "Xícara pequena", "preco": "3.00" },
-                { "nome": "Café s/ Leite (pequeno)", "descricao": "Xícara pequena", "preco": "2.00" },
-                { "nome": "Café sem Leite (média)", "descricao": "Xícara média", "preco": "4.00" },
-                { "nome": "Caipirinha de Limão", "descricao": "", "preco": "15.00" },
-                { "nome": "Caipirinha de Maracujá", "descricao": "", "preco": "18.00" },
-                { "nome": "Caipirinha de Tangerina", "descricao": "", "preco": "15.00" },
-                { "nome": "Caipirinha de Abacaxi", "descricao": "", "preco": "15.00" },
-                { "nome": "Caipirinha de Acerola", "descricao": "", "preco": "15.00" },
-                { "nome": "Capuccino", "descricao": "", "preco": "9.00" },
-                { "nome": "Chá Artesanal (diversos)", "descricao": "400 ml", "preco": "9.00" },
-                { "nome": "Chocolate Gelado", "descricao": "", "preco": "10.00" },
-                { "nome": "Chocolate Quente", "descricao": "", "preco": "15.00" },
-                { "nome": "Coquetel de Frutas (diversas)", "descricao": "Coquetel de Frutas sem alcool", "preco": "20.00" },
-                { "nome": "H2O", "descricao": "", "preco": "7.50" },
-                { "nome": "Ice Tea Mate c/gás", "descricao": "", "preco": "6.00" },
-                { "nome": "Refrigerante 1 litro (Coca cola)", "descricao": "Coca Cola", "preco": "10.00" },
-                { "nome": "Refrigerante 1 litro (Fanta)", "descricao": "", "preco": "10.00" },
-                { "nome": "Refrigerante Lata 350ml", "descricao": "Coca, Fanta, Guaraná, Limão 350ml", "preco": "6.00" },
-                { "nome": "Refrigerante Lata Sprite 350ml", "descricao": "", "preco": "6.00" },
-                { "nome": "Refrigerante pet 200ml Coca Cola", "descricao": "", "preco": "3.00" },
-                { "nome": "Refrigerante pet 200ml Fanta", "descricao": "", "preco": "3.00" },
-                { "nome": "Refrigerante pet 600ml Coca Cola", "descricao": "", "preco": "7.50" },
-                { "nome": "Roska de Limão", "descricao": "", "preco": "18.00" },
-                { "nome": "Roska de Maracujá", "descricao": "", "preco": "20.00" },
-                { "nome": "Roska de Morango", "descricao": "", "preco": "28.00" },
-                { "nome": "Roska de Kiwi", "descricao": "", "preco": "28.00" },
-                { "nome": "Roska de Abacaxi", "descricao": "", "preco": "18.00" },
-                { "nome": "Roska de Acerola", "descricao": "", "preco": "18.00" },
-                { "nome": "Roska de Tangerina", "descricao": "", "preco": "18.00" },
-                { "nome": "Roska de Umbu", "descricao": "", "preco": "18.00" },
-                { "nome": "Suco de Abacaxi", "descricao": "", "preco": "12.00" },
-                { "nome": "Suco de Laranja (copo)", "descricao": "", "preco": "10.00" },
-                { "nome": "Suco de Laranja (jarra)", "descricao": "", "preco": "19.00" },
-                { "nome": "Suco de Limão", "descricao": "", "preco": "10.00" },
-                { "nome": "Suco de Limão (jarra)", "descricao": "", "preco": "18.00" },
-                { "nome": "Suco de Maracujá (copo)", "descricao": "", "preco": "14.00" },
-                { "nome": "Suco de Maracujá (jarra)", "descricao": "", "preco": "25.00" },
-                { "nome": "Suco de Morango (copo)", "descricao": "", "preco": "17.00" },
-                { "nome": "Suco de Morango (jarra)", "descricao": "", "preco": "30.00" },
-                { "nome": "Suco de Frutas (copo)", "descricao": "", "preco": "15.00" },
-                { "nome": "Suco de Frutas (jarra)", "descricao": "", "preco": "25.00" },
-                { "nome": "Suco Del Vale", "descricao": "", "preco": "6.00" }
+                { "nome": "Água com Gás 500ml", "descricao": "", "preco": "5.00", "disponivel": true },
+                { "nome": "Água sem Gás 500ml", "descricao": "", "preco": "4.00", "disponivel": true },
+                { "nome": "Água Tônica lata 350ml", "descricao": "", "preco": "6.50", "disponivel": true },
+                { "nome": "Amstel lata 295ml", "descricao": "", "preco": "8.00", "disponivel": true },
+                { "nome": "Aquarius Fresh", "descricao": "", "preco": "7.50", "disponivel": true },
+                { "nome": "Café com Leite (média)", "descricao": "Xícara média de café", "preco": "6.00", "disponivel": true },
+                { "nome": "Café com Leite (pequeno)", "descricao": "Xícara pequena", "preco": "3.00", "disponivel": true },
+                { "nome": "Café s/ Leite (pequeno)", "descricao": "Xícara pequena", "preco": "2.00", "disponivel": true },
+                { "nome": "Café sem Leite (média)", "descricao": "Xícara média", "preco": "4.00", "disponivel": true },
+                { "nome": "Caipirinha de Abacaxi", "descricao": "", "preco": "15.00", "disponivel": true },
+                { "nome": "Caipirinha de Acerola", "descricao": "", "preco": "15.00", "disponivel": true },
+                { "nome": "Caipirinha de Limão", "descricao": "", "preco": "15.00", "disponivel": true },
+                { "nome": "Caipirinha de Maracujá", "descricao": "", "preco": "18.00", "disponivel": true },
+                { "nome": "Caipirinha de Tangerina", "descricao": "", "preco": "15.00", "disponivel": true },
+                { "nome": "Capuccino", "descricao": "", "preco": "9.00", "disponivel": true },
+                { "nome": "Chá Artesanal (diversos)", "descricao": "400 ml", "preco": "9.00", "disponivel": true },
+                { "nome": "Chocolate Gelado", "descricao": "", "preco": "10.00", "disponivel": true },
+                { "nome": "Chocolate Quente", "descricao": "", "preco": "15.00", "disponivel": true },
+                { "nome": "Coquetel de Frutas (diversas)", "descricao": "Coquetel de Frutas sem alcool", "preco": "20.00", "disponivel": true },
+                { "nome": "H2O", "descricao": "", "preco": "7.50", "disponivel": true },
+                { "nome": "Ice Tea (chá gelado) Mate c/gás", "descricao": "", "preco": "variable", "disponivel": true },
+                { "nome": "Refrigerante 1 litro (Coca cola)", "descricao": "Coca Cola", "preco": "10.00", "disponivel": true },
+                { "nome": "Refrigerante 1 litro (Fanta)", "descricao": "", "preco": "10.00", "disponivel": true },
+                { "nome": "Refrigerante Lata 350ml Coca Cola", "descricao": "Coca, Fanta, Guaraná, Limão 350ml", "preco": "6.00", "disponivel": true },
+                { "nome": "Refrigerante Lata 350ml Sprite", "descricao": "", "preco": "6.00", "disponivel": true },
+                { "nome": "Refrigerante Limon Fresh", "descricao": "", "preco": "7.50", "disponivel": true },
+                { "nome": "Refrigerante pet 200ml Coca Cola", "descricao": "", "preco": "3.00", "disponivel": true },
+                { "nome": "Refrigerante pet 200ml Fanta", "descricao": "", "preco": "3.00", "disponivel": true },
+                { "nome": "Refrigerante pet 600ml Coca Cola", "descricao": "", "preco": "7.50", "disponivel": true },
+                { "nome": "Refrigertante Lata 350ml (Fanta)", "descricao": "", "preco": "6.00", "disponivel": true },
+                { "nome": "Roska de Abacaxi", "descricao": "", "preco": "18.00", "disponivel": true },
+                { "nome": "Roska de Acerola", "descricao": "", "preco": "18.00", "disponivel": true },
+                { "nome": "Roska de Kiwi", "descricao": "", "preco": "28.00", "disponivel": true },
+                { "nome": "Roska de Limão", "descricao": "", "preco": "18.00", "disponivel": true },
+                { "nome": "Roska de Maracujá", "descricao": "", "preco": "20.00", "disponivel": true },
+                { "nome": "Roska de Morango", "descricao": "", "preco": "28.00", "disponivel": true },
+                { "nome": "Roska de Tangerina", "descricao": "", "preco": "18.00", "disponivel": true },
+                { "nome": "Roska de Umbu", "descricao": "", "preco": "18.00", "disponivel": true },
+                { "nome": "Suco de Abacaxi", "descricao": "", "preco": "12.00", "disponivel": true },
+                { "nome": "Suco de Frutas (copo)", "descricao": "", "preco": "15.00", "disponivel": true },
+                { "nome": "Suco de Frutas (jarra)", "descricao": "", "preco": "25.00", "disponivel": true },
+                { "nome": "Suco de Laranja (copo)", "descricao": "", "preco": "10.00", "disponivel": true },
+                { "nome": "Suco de Laranja (jarra)", "descricao": "", "preco": "19.00", "disponivel": true },
+                { "nome": "Suco de Limão", "descricao": "", "preco": "10.00", "disponivel": true },
+                { "nome": "Suco de Limão (jarra)", "descricao": "", "preco": "18.00", "disponivel": true },
+                { "nome": "Suco de Maracujá (copo)", "descricao": "", "preco": "14.00", "disponivel": true },
+                { "nome": "Suco de Maracujá (jarra)", "descricao": "", "preco": "25.00", "disponivel": true },
+                { "nome": "Suco de Morango (copo)", "descricao": "", "preco": "17.00", "disponivel": true },
+                { "nome": "Suco de Morango (jarra)", "descricao": "", "preco": "30.00", "disponivel": true },
+                { "nome": "Suco Del Vale", "descricao": "", "preco": "6.00", "disponivel": true }
             ],
             "Petiscos": [
-                { "nome": "Caldo de Sururu", "descricao": "", "preco": "15.00" },
-                { "nome": "Camarão Encapado", "descricao": "", "preco": "35.00" },
-                { "nome": "Codorna", "descricao": "", "preco": "18.00" },
-                { "nome": "Escondidinho de Camarão", "descricao": "", "preco": "25.00" },
-                { "nome": "Escondidinho de Carne do Sol", "descricao": "", "preco": "22.00" }
+                { "nome": "Batata Frita - Porção", "descricao": "", "preco": "20.00", "disponivel": true },
+                { "nome": "Caldo de Sururu", "descricao": "", "preco": "15.00", "disponivel": true },
+                { "nome": "Camarão Encapado", "descricao": "", "preco": "35.00", "disponivel": true },
+                { "nome": "Codorna", "descricao": "", "preco": "18.00", "disponivel": true },
+                { "nome": "Escondidinho de Camarão", "descricao": "", "preco": "25.00", "disponivel": false },
+                { "nome": "Escondidinho de Carne do Sol", "descricao": "", "preco": "22.00", "disponivel": false }
             ],
             "Pastel": [
-                { "nome": "Pastel de Camarão", "descricao": "", "preco": "19.00" },
-                { "nome": "Pastel de Carne", "descricao": "", "preco": "14.00" },
-                { "nome": "Pastel de Carne com Queijo", "descricao": "", "preco": "16.00" },
-                { "nome": "Pastel de Carne Seca", "descricao": "", "preco": "19.00" },
-                { "nome": "Pastel de Frango", "descricao": "", "preco": "12.00" },
-                { "nome": "Pastel de Toscana com Requeijão", "descricao": "", "preco": "15.00" },
-                { "nome": "Pastel Misto", "descricao": "", "preco": "14.00" },
-                { "nome": "Pastel Três Queijos", "descricao": "", "preco": "17.00" }
+                { "nome": "Pastel de Camarão", "descricao": "", "preco": "19.00", "disponivel": false },
+                { "nome": "Pastel de Carne", "descricao": "", "preco": "14.00", "disponivel": true },
+                { "nome": "Pastel de Carne com Queijo", "descricao": "", "preco": "16.00", "disponivel": true },
+                { "nome": "Pastel de Carne Seca", "descricao": "", "preco": "19.00", "disponivel": true },
+                { "nome": "Pastel de Frango", "descricao": "", "preco": "12.00", "disponivel": true },
+                { "nome": "Pastel de Toscana com Requeijão", "descricao": "", "preco": "15.00", "disponivel": false },
+                { "nome": "Pastel Misto", "descricao": "", "preco": "14.00", "disponivel": true },
+                { "nome": "Pastel Três Queijos", "descricao": "", "preco": "17.00", "disponivel": false }
             ],
             "Pizza": [
-                { "nome": "Pizza de Atum (brotinho)", "descricao": "molho de tomate e mussarela e cebola", "preco": "19.00" },
-                { "nome": "Pizza de Atum (grande)", "descricao": "molho de tomate e mussarela", "preco": "55.00" },
-                { "nome": "Pizza de Calabresa (brotinho)", "descricao": "molho de tomate e mussarela", "preco": "15.00" },
-                { "nome": "Pizza de Calabresa (Grande)", "descricao": "Molho de Tomate e Mussarela", "preco": "42.00" },
-                { "nome": "Pizza de Camarão (grande)", "descricao": "molho de tomate e mussarela", "preco": "60.00" },
-                { "nome": "Pizza de Frango (grande)", "descricao": "molho de tomate e mussarela", "preco": "40.00" },
-                { "nome": "Pizza de Frango com Bacon e catupiri (grande)", "descricao": "Molho de tomate e mussarela", "preco": "46.00" },
-                { "nome": "Pizza de Frango com Catupiry (brotinho)", "descricao": "molho de tomate e mussarela", "preco": "17.00" },
-                { "nome": "Pizza de Frango com Catupiry (grande)", "descricao": "Molho de tomate e mussarela", "preco": "45.00" },
-                { "nome": "Pizza Portuguesa (brotinho)", "descricao": "presunto, ovo, cebola, orégano e azeitona", "preco": "18.00" },
-                { "nome": "Pizza Portuguesa (grande)", "descricao": "Presunto, ovo, tomate, cebola, orégano e azeitona", "preco": "40.00" },
-                { "nome": "Pizza Sertaneja (grande)", "descricao": "carne seca, queijo coalho e banana da terra", "preco": "55.00" },
-                { "nome": "Pizza Três Queijos", "descricao": "provolone, gorgonzola e queijo coalho", "preco": "60.00" },
-                { "nome": "Pizza Três Queijos (brotinho)", "descricao": "provolone, gorgonzola e queijo coalho", "preco": "20.00" }
+                { "nome": "Pizza de Atum (brotinho)", "descricao": "molho de tomate e mussarela e cebola", "preco": "19.00", "disponivel": true },
+                { "nome": "Pizza de Atum (grande)", "descricao": "molho de tomate e mussarela", "preco": "55.00", "disponivel": true },
+                { "nome": "Pizza de Calabresa (brotinho)", "descricao": "molho de tomate e mussarela", "preco": "15.00", "disponivel": true },
+                { "nome": "Pizza de Calabresa (Grande)", "descricao": "Molho de Tomate e Mussarela", "preco": "42.00", "disponivel": true },
+                { "nome": "Pizza de Camarão (grande)", "descricao": "molho de tomate e mussarela", "preco": "60.00", "disponivel": true },
+                { "nome": "Pizza de Frango (grande)", "descricao": "molho de tomate e mussarela", "preco": "40.00", "disponivel": true },
+                { "nome": "Pizza de Frango com Bacon e catupiri (grande)", "descricao": "Molho de tomate e mussarela", "preco": "46.00", "disponivel": true },
+                { "nome": "Pizza de Frango com Catupiry (brotinho)", "descricao": "molho de tomate e mussarela", "preco": "17.00", "disponivel": true },
+                { "nome": "Pizza de Frango com Catupiry (grande)", "descricao": "Molho de tomate e mussarela", "preco": "45.00", "disponivel": true },
+                { "nome": "Pizza Portuguesa (brotinho)", "descricao": "presunto, ovo, cebola, orégano e azeitona", "preco": "18.00", "disponivel": true },
+                { "nome": "Pizza Portuguesa (grande)", "descricao": "Presunto, ovo, tomate, cebola, orégano e azeitona", "preco": "40.00", "disponivel": true },
+                { "nome": "Pizza Sertaneja (grande)", "descricao": "carne seca, queijo coalho e banana da terra", "preco": "55.00", "disponivel": true },
+                { "nome": "Pizza Três Queijos", "descricao": "provolone, gorgonzola e queijo coalho", "preco": "60.00", "disponivel": true },
+                { "nome": "Pizza Três Queijos (brotinho)", "descricao": "provolone, gorgonzola e queijo coalho", "preco": "20.00", "disponivel": true }
             ]
         };
 
@@ -382,37 +427,40 @@
             Object.entries(cardapioData).forEach(([categoria, itens]) => {
                 if (categoriaFiltro !== 'all' && categoriaFiltro !== categoria) return;
 
-                // Só mostra categoria se tiver itens
-                if (itens.length > 0) {
-                    const categoriaSection = document.createElement('div');
-                    categoriaSection.className = 'categoria-section';
+                // Mostra categoria mesmo se tiver apenas itens indisponíveis
+                const categoriaSection = document.createElement('div');
+                categoriaSection.className = 'categoria-section';
+                
+                const titulo = document.createElement('h2');
+                titulo.className = 'categoria-titulo';
+                titulo.textContent = categoria;
+                categoriaSection.appendChild(titulo);
+
+                const grid = document.createElement('div');
+                grid.className = 'cardapio-grid';
+
+                itens.forEach(item => {
+                    const itemCard = document.createElement('div');
+                    itemCard.className = `item-card ${!item.disponivel ? 'indisponivel' : ''}`;
                     
-                    const titulo = document.createElement('h2');
-                    titulo.className = 'categoria-titulo';
-                    titulo.textContent = categoria;
-                    categoriaSection.appendChild(titulo);
+                    let itemHTML = `
+                        <div class="item-header">
+                            <h3 class="item-nome">${item.nome}</h3>
+                            <span class="item-preco ${!item.disponivel ? 'indisponivel' : ''}">${formatarPreco(item.preco)}</span>
+                        </div>
+                        ${item.descricao ? `<p class="item-descricao">${item.descricao}</p>` : ''}
+                    `;
+                    
+                    if (!item.disponivel) {
+                        itemHTML += `<div class="indisponivel-badge">Indisponível</div>`;
+                    }
+                    
+                    itemCard.innerHTML = itemHTML;
+                    grid.appendChild(itemCard);
+                });
 
-                    const grid = document.createElement('div');
-                    grid.className = 'cardapio-grid';
-
-                    itens.forEach(item => {
-                        const itemCard = document.createElement('div');
-                        itemCard.className = 'item-card';
-                        
-                        itemCard.innerHTML = `
-                            <div class="item-header">
-                                <h3 class="item-nome">${item.nome}</h3>
-                                <span class="item-preco">${formatarPreco(item.preco)}</span>
-                            </div>
-                            ${item.descricao ? `<p class="item-descricao">${item.descricao}</p>` : ''}
-                        `;
-
-                        grid.appendChild(itemCard);
-                    });
-
-                    categoriaSection.appendChild(grid);
-                    container.appendChild(categoriaSection);
-                }
+                categoriaSection.appendChild(grid);
+                container.appendChild(categoriaSection);
             });
         }
 
