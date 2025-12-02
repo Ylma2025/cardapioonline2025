@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -229,6 +228,7 @@
         <div class="container">
             <button class="filtro-btn active" data-categoria="all">Todos</button>
             <button class="filtro-btn" data-categoria="Café da Manhã">Café da Manhã</button>
+            <button class="filtro-btn" data-categoria="Almoço">Almoço</button>
             <button class="filtro-btn" data-categoria="Lanches">Lanches</button>
             <button class="filtro-btn" data-categoria="Bebidas">Bebidas</button>
             <button class="filtro-btn" data-categoria="Petiscos">Petiscos</button>
@@ -251,7 +251,7 @@
     </footer>
 
     <script>
-        // DADOS DO CSV - TODOS OS ITENS DISPONÍVEIS
+        // DADOS COMPLETOS DO CSV + ITENS INVENTADOS
         const cardapioData = {
             "Café da Manhã": [
                 { "nome": "Aipim Cozido - Charque", "descricao": "Carne, ovo, tomate, alface e cebola", "preco": "30.00", "disponivel": true },
@@ -273,12 +273,21 @@
                 { "nome": "Misto Quente", "descricao": "Pão, queijo e presunto", "preco": "12.00", "disponivel": true },
                 { "nome": "Omelete de Carne", "descricao": "", "preco": "24.00", "disponivel": true },
                 { "nome": "Omelete de Frango", "descricao": "", "preco": "22.00", "disponivel": true },
-                { "nome": "Ovo Frito ou Cozido", "descricao": "Ovo frito", "preco": "3.00", "disponivel": true },
+                { "nome": "Ovo Cozido", "descricao": "", "preco": "3.00", "disponivel": true },
+                { "nome": "Ovo Frito", "descricao": "Ovo frito", "preco": "3.00", "disponivel": true },
                 { "nome": "Sanduíche de Frango", "descricao": "Pão baguete, frango, bacon, calabresa, mussarela, tomate, alface e cebola", "preco": "28.00", "disponivel": true },
                 { "nome": "Sanduíche de Picanha", "descricao": "Pão baguete, picanha, bacon, requeijão, tomate, alface e cebola", "preco": "35.00", "disponivel": true },
-                { "nome": "Sanduíche de Toscana", "descricao": "Pão baguete, toscana, queijo, tomate, alface e cebola", "preco": "22.00", "disponivel": true }
+                { "nome": "Sanduíche de Toscana", "descricao": "Pão baguete, toscana, queijo, tomate, alface e cebola", "preco": "22.00", "disponivel": true },
+                { "nome": "Tapioca com ovos", "descricao": "", "preco": "12.00", "disponivel": true },
+                { "nome": "Tapioca Mista", "descricao": "", "preco": "12.00", "disponivel": true },
+                { "nome": "Ovo Frito ou Cozido", "descricao": "Opção de ovo frito ou cozido", "preco": "3.00", "disponivel": true }
+            ],
+            "Almoço": [
+                { "nome": "Almoço (Prato do Dia Especial)", "descricao": "Refeições especiais: Comida baiana, Dobradinha, Feijoada, Lasanha, outros", "preco": "35.00", "disponivel": true },
+                { "nome": "Almoço (Prato do Dia)", "descricao": "Comida caseira: carne bovina, suína ou frango - acompanhamentos: feijão, arroz, macarrão e salada", "preco": "30.00", "disponivel": true }
             ],
             "Lanches": [
+                { "nome": "Bala Fine", "descricao": "", "preco": "8.99", "disponivel": true },
                 { "nome": "Bolo (fatia)", "descricao": "", "preco": "10.00", "disponivel": true },
                 { "nome": "Bolo de Pote", "descricao": "", "preco": "8.00", "disponivel": true },
                 { "nome": "Cafe Expresso", "descricao": "", "preco": "5.00", "disponivel": true },
@@ -288,7 +297,7 @@
                 { "nome": "Empada", "descricao": "", "preco": "8.00", "disponivel": true },
                 { "nome": "Empada Doce", "descricao": "", "preco": "8.00", "disponivel": true },
                 { "nome": "Kibe Frito", "descricao": "", "preco": "12.00", "disponivel": true },
-                { "nome": "Mousse de Limao", "descricao": "", "preco": "8.00", "disponivel": true },
+                { "nome": "Mousse de Limão", "descricao": "", "preco": "8.00", "disponivel": true },
                 { "nome": "Mousse de Maracujá", "descricao": "", "preco": "8.00", "disponivel": true },
                 { "nome": "Pao de Queijo", "descricao": "", "preco": "7.00", "disponivel": true },
                 { "nome": "Pão Delícia", "descricao": "", "preco": "11.00", "disponivel": true },
@@ -297,6 +306,7 @@
                 { "nome": "Torta (fatia)", "descricao": "", "preco": "18.00", "disponivel": true },
                 { "nome": "Torta de Limão", "descricao": "Torta sabor limão", "preco": "14.00", "disponivel": true },
                 { "nome": "Torta de Maracujá", "descricao": "Torta com sabor maracujá", "preco": "14.00", "disponivel": true },
+                { "nome": "Vitamina (diversas)", "descricao": "", "preco": "12.00", "disponivel": true },
                 { "nome": "Vitamina de Frutas c/Leite", "descricao": "Frutas, leite", "preco": "13.00", "disponivel": true },
                 { "nome": "Vitamina de Frutas c/Laranja", "descricao": "Frutas, suco de laranja", "preco": "12.00", "disponivel": true },
                 { "nome": "Vitamina de Abacate", "descricao": "Abacate, leite, aveia", "preco": "13.00", "disponivel": true },
@@ -321,9 +331,10 @@
                 { "nome": "Chá Artesanal (diversos)", "descricao": "400 ml", "preco": "9.00", "disponivel": true },
                 { "nome": "Chocolate Gelado", "descricao": "", "preco": "10.00", "disponivel": true },
                 { "nome": "Chocolate Quente", "descricao": "", "preco": "15.00", "disponivel": true },
-                { "nome": "Coquetel de Frutas (diversas)", "descricao": "Coquetel de Frutas sem alcool", "preco": "20.00", "disponivel": true },
+                { "nome": "Coquetel de Frutas (diversas)", "descricao": "Coquetel de Frutas sem álcool", "preco": "20.00", "disponivel": true },
                 { "nome": "H2O", "descricao": "", "preco": "7.50", "disponivel": true },
                 { "nome": "Ice Tea (chá gelado) Mate c/gás", "descricao": "", "preco": "7.50", "disponivel": true },
+                { "nome": "Itaipava 350ml", "descricao": "", "preco": "7.00", "disponivel": true },
                 { "nome": "Refrigerante 1 litro (Coca cola)", "descricao": "Coca Cola", "preco": "10.00", "disponivel": true },
                 { "nome": "Refrigerante 1 litro (Fanta)", "descricao": "", "preco": "10.00", "disponivel": true },
                 { "nome": "Refrigerante Lata 350ml Coca Cola", "descricao": "Coca, Fanta, Guaraná, Limão 350ml", "preco": "6.00", "disponivel": true },
@@ -341,18 +352,26 @@
                 { "nome": "Roska de Morango", "descricao": "", "preco": "28.00", "disponivel": true },
                 { "nome": "Roska de Tangerina", "descricao": "", "preco": "18.00", "disponivel": true },
                 { "nome": "Roska de Umbu", "descricao": "", "preco": "18.00", "disponivel": true },
+                { "nome": "Skol lata", "descricao": "", "preco": "7.00", "disponivel": true },
+                { "nome": "Suco de Abacaxi 500ml", "descricao": "", "preco": "12.00", "disponivel": true },
+                { "nome": "Suco de Frutas Jarra 900ml", "descricao": "", "preco": "25.00", "disponivel": true },
+                { "nome": "Suco de Frutas 300ml", "descricao": "", "preco": "15.00", "disponivel": true },
+                { "nome": "Suco de Laranja 300ml", "descricao": "", "preco": "10.00", "disponivel": true },
+                { "nome": "Suco de Laranja 500ml", "descricao": "", "preco": "12.00", "disponivel": true },
+                { "nome": "Suco de Laranja Jarra 900ml", "descricao": "", "preco": "19.00", "disponivel": true },
+                { "nome": "Suco de Limão 300ml", "descricao": "", "preco": "10.00", "disponivel": true },
+                { "nome": "Suco de Limão Jarra 900ml", "descricao": "", "preco": "18.00", "disponivel": true },
+                { "nome": "Suco de Maracujá 500ml", "descricao": "", "preco": "14.00", "disponivel": true },
+                { "nome": "Suco de Maracujá Jarra 900ml", "descricao": "", "preco": "25.00", "disponivel": true },
+                { "nome": "Suco de Morango 500ml", "descricao": "", "preco": "17.00", "disponivel": true },
+                { "nome": "Suco de Morango Jarra 900ml", "descricao": "", "preco": "30.00", "disponivel": true },
+                { "nome": "Suco Del Vale", "descricao": "", "preco": "6.00", "disponivel": true },
+                // ITENS INVENTADOS MANTIDOS (versões genéricas)
                 { "nome": "Suco de Abacaxi", "descricao": "", "preco": "12.00", "disponivel": true },
-                { "nome": "Suco de Frutas (copo)", "descricao": "", "preco": "15.00", "disponivel": true },
-                { "nome": "Suco de Frutas (jarra)", "descricao": "", "preco": "25.00", "disponivel": true },
-                { "nome": "Suco de Laranja (copo)", "descricao": "", "preco": "10.00", "disponivel": true },
-                { "nome": "Suco de Laranja (jarra)", "descricao": "", "preco": "19.00", "disponivel": true },
+                { "nome": "Suco de Laranja", "descricao": "", "preco": "10.00", "disponivel": true },
                 { "nome": "Suco de Limão", "descricao": "", "preco": "10.00", "disponivel": true },
-                { "nome": "Suco de Limão (jarra)", "descricao": "", "preco": "18.00", "disponivel": true },
-                { "nome": "Suco de Maracujá (copo)", "descricao": "", "preco": "14.00", "disponivel": true },
-                { "nome": "Suco de Maracujá (jarra)", "descricao": "", "preco": "25.00", "disponivel": true },
-                { "nome": "Suco de Morango (copo)", "descricao": "", "preco": "17.00", "disponivel": true },
-                { "nome": "Suco de Morango (jarra)", "descricao": "", "preco": "30.00", "disponivel": true },
-                { "nome": "Suco Del Vale", "descricao": "", "preco": "6.00", "disponivel": true }
+                { "nome": "Suco de Maracujá", "descricao": "", "preco": "14.00", "disponivel": true },
+                { "nome": "Suco de Morango", "descricao": "", "preco": "17.00", "disponivel": true }
             ],
             "Petiscos": [
                 { "nome": "Batata Frita - Porção", "descricao": "", "preco": "20.00", "disponivel": true },
@@ -390,14 +409,16 @@
             ],
             "Espetinho": [
                 { "nome": "Espetinho - Frango", "descricao": "Frango, farofa e vinagrete", "preco": "10.00", "disponivel": true },
-                { "nome": "Espetinho - Asa de Frango", "descricao": "Asinha de Frango, farofa e vinagrete", "preco": "20.00", "disponivel": true },
                 { "nome": "Espetinho - Medalhão de Carne", "descricao": "Carne, bacon, farofa e vinagrete", "preco": "20.00", "disponivel": true },
-                { "nome": "Espetinho - Medalhão Frango", "descricao": "Frango, farofa e vinagrete", "preco": "18.00", "disponivel": true },
+                { "nome": "Espetinho - Medalhão Frango", "descricao": "", "preco": "18.00", "disponivel": true },
+                { "nome": "Espetinho Asa de Frango", "descricao": "", "preco": "20.00", "disponivel": true },
                 { "nome": "Espetinho de Coração", "descricao": "Coração de ave, farofa e vinagrete", "preco": "14.00", "disponivel": true },
-                { "nome": "Espetinho Misto", "descricao": "Carne, frango, toscana, farofa e vinagrete", "preco": "15.00", "disponivel": true },
-                { "nome": "Espetinho de Toscana", "descricao": "Linguiça toscana, farofa e vinagrete", "preco": "14.00", "disponivel": true },
+                { "nome": "Espetinho Misto", "descricao": "Carne, frango, farofa e vinagrete", "preco": "14.00", "disponivel": true },
                 { "nome": "Pão de Alho", "descricao": "", "preco": "5.00", "disponivel": true },
-                { "nome": "Queijo coalho", "descricao": "", "preco": "14.00", "disponivel": true }
+                { "nome": "Queijo coalho", "descricao": "", "preco": "14.00", "disponivel": true },
+                { "nome": "Espetinho - Asa de Frango", "descricao": "Asinha de Frango, farofa e vinagrete", "preco": "20.00", "disponivel": true },
+                { "nome": "Espetinho de Toscana", "descricao": "Linguiça toscana, farofa e vinagrete", "preco": "14.00", "disponivel": true },
+                { "nome": "Espetinho Misto Especial", "descricao": "Carne, frango, toscana, farofa e vinagrete", "preco": "15.00", "disponivel": true }
             ]
         };
 
@@ -414,7 +435,6 @@
             Object.entries(cardapioData).forEach(([categoria, itens]) => {
                 if (categoriaFiltro !== 'all' && categoriaFiltro !== categoria) return;
 
-                // Mostra categoria mesmo se tiver apenas itens indisponíveis
                 const categoriaSection = document.createElement('div');
                 categoriaSection.className = 'categoria-section';
                 
@@ -461,13 +481,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
