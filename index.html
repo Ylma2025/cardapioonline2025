@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -234,13 +233,14 @@
             <button class="filtro-btn active" data-categoria="all">Todos</button>
             <button class="filtro-btn" data-categoria="Café da Manhã">Café da Manhã</button>
             <button class="filtro-btn" data-categoria="Almoço">Almoço</button>
-            <button class="filtro-btn" data-categoria="Lanches">Lanches</button>
+            <button class="filtro-btn" data-categoria="Lanche">Lanches</button>
             <button class="filtro-btn" data-categoria="Bebidas">Bebidas</button>
-            <button class="filtro-btn" data-categoria="Petiscos">Petiscos</button>
+            <button class="filtro-btn" data-categoria="Petisco">Petiscos</button>
             <button class="filtro-btn" data-categoria="Pastel">Pastel</button>
             <button class="filtro-btn" data-categoria="Pizza">Pizza</button>
             <button class="filtro-btn" data-categoria="Espetinho">Espetinho</button>
             <button class="filtro-btn" data-categoria="Sobremesa">Sobremesa</button>
+            <button class="filtro-btn" data-categoria="Bolo (encomenda)">Bolos</button>
         </div>
     </section>
 
@@ -257,7 +257,7 @@
     </footer>
 
     <script>
-        // DADOS COMPLETOS DO CSV ATUALIZADO - TODOS OS ITENS REAIS E DISPONÍVEIS
+        // DADOS COMPLETOS DO CSV ATUALIZADO
         const cardapioData = {
             "Café da Manhã": [
                 { "nome": "Aipim Cozido - Charque", "descricao": "Carne, ovo, tomate, alface e cebola", "preco": "30.00", "disponivel": true },
@@ -290,30 +290,34 @@
                 { "nome": "Sanduíche de Toscana", "descricao": "Pão baguete, toscana, queijo, tomate, alface e cebola", "preco": "22.00", "disponivel": true },
                 { "nome": "Tapioca com Frango", "descricao": "Tapioca com frango desfiado", "preco": "12.00", "disponivel": true },
                 { "nome": "Tapioca com ovos", "descricao": "", "preco": "12.00", "disponivel": true },
-                { "nome": "Tapioca Mista", "descricao": "", "preco": "12.00", "disponivel": true }
+                { "nome": "Tapioca Mista", "descricao": "", "preco": "12.00", "disponivel": true },
+                { "nome": "Tapioca Mista (queijo/presunto/ovos)", "descricao": "", "preco": "17.00", "disponivel": true }
             ],
             "Almoço": [
-                { "nome": "Panqueca", "descricao": "Massa com recheio de frango desfiado ou carne moída e molho especial - acompanhamentos: feijão, arroz, macarrão e salada", "preco": "30.00", "disponivel": true },
-                { "nome": "Frango à Parmegiana", "descricao": "Filé de frango empanado c/queijo, presunto e molho especial - acompanhamentos: arroz ou macarrão e purê de batata", "preco": "30.00", "disponivel": true },
-                { "nome": "Peixe com Camarão", "descricao": "Peixe ensopado, moqueca com camarão", "preco": "35.00", "disponivel": true },
-                { "nome": "Escondidinho de Camarão", "descricao": "Camarão envolvido no purê de aipim, especiarias e molho especial.", "preco": "35.00", "disponivel": true },
-                { "nome": "Frango Assado", "descricao": "Coxa e sobrecoxa de frango assada - acompanhamentos: feijão, arroz, macarrão e salada", "preco": "30.00", "disponivel": true },
-                { "nome": "Bife à Cavalo", "descricao": "Bife suculento de carne bovina com ovos - acompanhamentos: feijão, arroz, macarrão e salada", "preco": "30.00", "disponivel": true },
-                { "nome": "Bife Acebolado", "descricao": "Bife suculento de carne bovina regado com cebolas - acompanhamentos: feijão, arroz, macarrão e salada", "preco": "30.00", "disponivel": true },
-                { "nome": "Bisteca Suina", "descricao": "Bisteca suina frita ou assada - acompanhamentos: feijão, arroz, macarrão e salada", "preco": "30.00", "disponivel": true },
-                { "nome": "Carne de Panela", "descricao": "Carne bovina cozida - acompanhamentos: feijão, arroz, macarrão e salada", "preco": "30.00", "disponivel": true },
-                { "nome": "Contra Filé", "descricao": "Carne Bovina especial - acompanhamentos: feijão, arroz, macarrão e salada", "preco": "30.00", "disponivel": true },
-                { "nome": "Fígado Acebolado", "descricao": "Iscas de fígado bovino acebolado - acompanhamentos: feijão, arroz, macarrão e salada", "preco": "30.00", "disponivel": true },
-                { "nome": "Frango à Passarinho", "descricao": "Cortes de frango frito - acompanhamentos: feijão, arroz, macarrão e salada", "preco": "30.00", "disponivel": true },
-                { "nome": "Frango Cozido c/batata", "descricao": "Cortes de frango cozido - acompanhamentos: feijão, arroz, macarrão e salada", "preco": "30.00", "disponivel": true },
-                { "nome": "Omelete de Carne ou Frango", "descricao": "Omelete de Carne ou frango - acompanhamentos: feijão, arroz, macarrão e salada", "preco": "30.00", "disponivel": true },
-                { "nome": "Camarão empanado", "descricao": "Camarão frito empanado em farinha de rosca", "preco": "35.00", "disponivel": true },
-                { "nome": "Lasanha Bolonhesa ou Frango", "descricao": "Massa com recheio de carne moída ou rango desfiado", "preco": "35.00", "disponivel": true },
-                { "nome": "Frango à Milanesa", "descricao": "Peito de frango frito empanado - acompanhamentos: feijão, arroz, macarrão e salada", "preco": "30.00", "disponivel": true },
-                { "nome": "Churrasco Misto", "descricao": "Cortes de carne bovina, frango e toscana - acompanhamentos: feijão tropeiro, arroz, macarrão, salada", "preco": "30.00", "disponivel": true },
-                { "nome": "Peixe à Escabeche c/molho de Camarão", "descricao": "Peixe frito e marinado em molho especial", "preco": "35.00", "disponivel": true }
+                { "nome": "Almoço - Bife à Cavalo", "descricao": "", "preco": "30.00", "disponivel": true },
+                { "nome": "Almoço - Bife Acebolado", "descricao": "", "preco": "30.00", "disponivel": true },
+                { "nome": "Almoço - Bisteca Suina", "descricao": "", "preco": "30.00", "disponivel": true },
+                { "nome": "Almoço - Camarão Empanado", "descricao": "", "preco": "35.00", "disponivel": true },
+                { "nome": "Almoço - Carne de Panela", "descricao": "Carne bovina cozida", "preco": "30.00", "disponivel": true },
+                { "nome": "Almoço - Churrasco Misto", "descricao": "Carne bovina, frango e toscana", "preco": "30.00", "disponivel": true },
+                { "nome": "Almoço - Contra Filé", "descricao": "Carne bovina especial", "preco": "30.00", "disponivel": true },
+                { "nome": "Almoço - Dobradinha", "descricao": "", "preco": "35.00", "disponivel": true },
+                { "nome": "Almoço - Escondidinho de Camarão", "descricao": "Refeições especiais: Comida baiana, Dobradinha, Feijoada, Lasanha, outros.", "preco": "35.00", "disponivel": true },
+                { "nome": "Almoço - Fígado Acebolado", "descricao": "", "preco": "30.00", "disponivel": true },
+                { "nome": "Almoço - Frango à Milanesa", "descricao": "Peito de frango frito empanado em ovos e farinha de rosca", "preco": "30.00", "disponivel": true },
+                { "nome": "Almoço - Frango à Parmegiana", "descricao": "Servido com Arroz ou macarrão e purê de batata", "preco": "30.00", "disponivel": true },
+                { "nome": "Almoço - Frango à Passarinho", "descricao": "", "preco": "30.00", "disponivel": true },
+                { "nome": "Almoço - Frango Assado", "descricao": "Comida caseira: carne bovina, suína ou frango - acompanhamentos: feijão, arroz, macarrão e salada", "preco": "30.00", "disponivel": true },
+                { "nome": "Almoço - Frango Cozido c/batata", "descricao": "", "preco": "30.00", "disponivel": true },
+                { "nome": "Almoço - Lasanha Bolonhesa ou Frango", "descricao": "", "preco": "35.00", "disponivel": true },
+                { "nome": "Almoço - Moqueca de Peixe", "descricao": "", "preco": "30.00", "disponivel": true },
+                { "nome": "Almoço - Omelete de Carne ou Frango", "descricao": "", "preco": "30.00", "disponivel": true },
+                { "nome": "Almoco - Panqueca", "descricao": "", "preco": "30.00", "disponivel": true },
+                { "nome": "Almoço - Peixe à Escabeche c/ molho de Camarão", "descricao": "", "preco": "35.00", "disponivel": true },
+                { "nome": "Almoço - Peixe com Camarão", "descricao": "Peixe ensopado, moqueca ou escabeche com camarão", "preco": "35.00", "disponivel": true },
+                { "nome": "Moqueca de Camarao - Completa p/ 2", "descricao": "", "preco": "120.00", "disponivel": true }
             ],
-            "Lanches": [
+            "Lanche": [
                 { "nome": "Bala Fine", "descricao": "", "preco": "8.99", "disponivel": true },
                 { "nome": "Bolo (fatia)", "descricao": "", "preco": "10.00", "disponivel": true },
                 { "nome": "Bolo de Pote", "descricao": "", "preco": "8.00", "disponivel": true },
@@ -325,10 +329,11 @@
                 { "nome": "Empada Doce", "descricao": "", "preco": "8.00", "disponivel": true },
                 { "nome": "Empada mini", "descricao": "", "preco": "4.00", "disponivel": true },
                 { "nome": "Kibe Frito", "descricao": "", "preco": "12.00", "disponivel": true },
+                { "nome": "Pão com ovos e queijo", "descricao": "", "preco": "11.00", "disponivel": true },
                 { "nome": "Pao de Queijo", "descricao": "", "preco": "7.00", "disponivel": true },
                 { "nome": "Pão Delícia", "descricao": "", "preco": "11.00", "disponivel": true },
                 { "nome": "Pastel de Forno", "descricao": "", "preco": "8.00", "disponivel": true },
-                { "nome": "Salgadinho", "descricao": "", "preco": "2.50", "disponivel": true },
+                { "nome": "Saladinho", "descricao": "", "preco": "2.50", "disponivel": true },
                 { "nome": "Salgados Diversos", "descricao": "", "preco": "12.00", "disponivel": true },
                 { "nome": "Torta (fatia)", "descricao": "", "preco": "18.00", "disponivel": true },
                 { "nome": "Torta de Limão", "descricao": "Torta sabor limão", "preco": "14.00", "disponivel": true },
@@ -350,7 +355,7 @@
                 { "nome": "Caipirinha de Limão", "descricao": "", "preco": "15.00", "disponivel": true },
                 { "nome": "Caipirinha de Maracujá", "descricao": "", "preco": "18.00", "disponivel": true },
                 { "nome": "Caipirinha de Tangerina", "descricao": "", "preco": "15.00", "disponivel": true },
-                { "nome": "Capuccino", "descricao": "", "preco": "9.00", "disponivel": true },
+                { "nome": "Capuccino (coffee)", "descricao": "", "preco": "9.00", "disponivel": true },
                 { "nome": "Chá Artesanal (diversos)", "descricao": "400 ml", "preco": "9.00", "disponivel": true },
                 { "nome": "Chá em sachê", "descricao": "", "preco": "4.00", "disponivel": true },
                 { "nome": "Chocolate Gelado", "descricao": "", "preco": "10.00", "disponivel": true },
@@ -361,13 +366,16 @@
                 { "nome": "Itaipava 350ml", "descricao": "", "preco": "7.00", "disponivel": true },
                 { "nome": "Refrigerante 1 litro (Coca cola)", "descricao": "Coca Cola", "preco": "10.00", "disponivel": true },
                 { "nome": "Refrigerante 1 litro (Fanta)", "descricao": "", "preco": "10.00", "disponivel": true },
+                { "nome": "Refrigerante Lata 350ml", "descricao": "", "preco": "6.00", "disponivel": true },
+                { "nome": "Refrigerante Lata 350ml (Sprite)", "descricao": "", "preco": "6.00", "disponivel": true },
                 { "nome": "Refrigerante Lata 350ml Coca Cola", "descricao": "Coca, Fanta, Guaraná, Limão 350ml", "preco": "6.00", "disponivel": true },
-                { "nome": "Refrigerante Lata 350ml Sprite", "descricao": "", "preco": "6.00", "disponivel": true },
                 { "nome": "Refrigerante Limon Fresh", "descricao": "", "preco": "7.50", "disponivel": true },
                 { "nome": "Refrigerante pet 200ml Coca Cola", "descricao": "", "preco": "3.00", "disponivel": true },
                 { "nome": "Refrigerante pet 200ml Fanta", "descricao": "", "preco": "3.00", "disponivel": true },
                 { "nome": "Refrigerante pet 600ml Coca Cola", "descricao": "", "preco": "7.50", "disponivel": true },
                 { "nome": "Refrigerante Lata 350ml (Fanta)", "descricao": "", "preco": "6.00", "disponivel": true },
+                { "nome": "Refrigerante Lata 350ml (Guaraná Antarctica)", "descricao": "", "preco": "variable", "disponivel": true },
+                { "nome": "Refrigerante Lata 350ml (Kuat Zero)", "descricao": "", "preco": "variable", "disponivel": true },
                 { "nome": "Roska de Abacaxi", "descricao": "", "preco": "18.00", "disponivel": true },
                 { "nome": "Roska de Acerola", "descricao": "", "preco": "18.00", "disponivel": true },
                 { "nome": "Roska de Kiwi", "descricao": "", "preco": "28.00", "disponivel": true },
@@ -391,7 +399,7 @@
                 { "nome": "Suco de Morango Jarra 900ml", "descricao": "", "preco": "30.00", "disponivel": true },
                 { "nome": "Suco Del Vale", "descricao": "", "preco": "6.00", "disponivel": true }
             ],
-            "Petiscos": [
+            "Petisco": [
                 { "nome": "Batata Frita - Porção", "descricao": "", "preco": "20.00", "disponivel": true },
                 { "nome": "Caldo de Sururu", "descricao": "", "preco": "15.00", "disponivel": true },
                 { "nome": "Camarão Empanado", "descricao": "Camarão frito empanado na farinha de rosca e crocante", "preco": "55.00", "disponivel": true },
@@ -440,9 +448,15 @@
             ],
             "Sobremesa": [
                 { "nome": "Doce de Leite (Caseiro)", "descricao": "Delicioso doce de leite caseiro", "preco": "10.00", "disponivel": true },
-                { "nome": "Mousse de Limão", "descricao": "Surpreendente mousse de limão", "preco": "8.00", "disponivel": true },
+                { "nome": "Mousse de Limao", "descricao": "Surpreendente mousse de limão", "preco": "8.00", "disponivel": true },
                 { "nome": "Mousse de Maracujá", "descricao": "Maravilhoso mousse de maracujá", "preco": "8.00", "disponivel": true },
                 { "nome": "Pudim", "descricao": "", "preco": "5.00", "disponivel": true }
+            ],
+            "Bolo (encomenda)": [
+                { "nome": "Bolo 15cm", "descricao": "", "preco": "140.00", "disponivel": true },
+                { "nome": "Bolo 20cm", "descricao": "", "preco": "170.00", "disponivel": true },
+                { "nome": "Bolo 25cm", "descricao": "", "preco": "220.00", "disponivel": true },
+                { "nome": "Bolo 30cm", "descricao": "", "preco": "340.00", "disponivel": true }
             ]
         };
 
@@ -504,15 +518,4 @@
         });
     </script>
 </body>
-
 </html>
-
-
-
-
-
-
-
-
-
-
