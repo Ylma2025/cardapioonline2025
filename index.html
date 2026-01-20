@@ -265,7 +265,7 @@
     </footer>
 
     <script>
-        // DADOS COMPLETOS DO CSV ATUALIZADO - TODOS DISPONÍVEIS
+        // DADOS ATUALIZADOS DO CSV
         const cardapioData = {
             "Café da Manhã": [
                 { "nome": "Aipim Cozido - Charque", "descricao": "Carne, ovo, tomate, alface e cebola", "preco": "30.00" },
@@ -309,6 +309,7 @@
                 { "nome": "Almoço - Carne de Panela", "descricao": "Servido com feijão (caldo ou tropeiro), arroz, macarrão e salada", "preco": "30.00" },
                 { "nome": "Almoço - Churrasco Misto", "descricao": "Servido com feijão (caldo ou tropeiro), arroz, macarrão e salada", "preco": "30.00" },
                 { "nome": "Almoço - Contra Filé", "descricao": "Servido com feijão (caldo ou tropeiro), arroz, macarrão e salada", "preco": "30.00" },
+                { "nome": "Almoço - Diversos", "descricao": "Almoço corporativo", "preco": "28.00" },
                 { "nome": "Almoço - Dobradinha", "descricao": "Servido com feijão (caldo ou tropeiro), arroz, macarrão e salada", "preco": "35.00" },
                 { "nome": "Almoço - Escondidinho de Camarão", "descricao": "Refeições especiais: Comida baiana, Dobradinha, Feijoada, Lasanha, outros.", "preco": "35.00" },
                 { "nome": "Almoço - Fígado Acebolado", "descricao": "Servido com feijão (caldo ou tropeiro), arroz, macarrão e salada", "preco": "30.00" },
@@ -323,15 +324,15 @@
                 { "nome": "Almoco - Panqueca", "descricao": "Servido com feijão (caldo ou tropeiro), arroz, macarrão e salada", "preco": "30.00" },
                 { "nome": "Almoço - Peixe a Escabeche c/ molho de Camarão", "descricao": "", "preco": "35.00" },
                 { "nome": "Almoço - Peixe com Camarão", "descricao": "Servido com arroz ou macarrão e purê de batata", "preco": "35.00" },
+                { "nome": "Almoço Peixe Frito", "descricao": "", "preco": "30.00" },
                 { "nome": "Moqueca de Camarao - Completa p/ 2", "descricao": "Servido com arroz, pirão e purê de batata", "preco": "120.00" }
             ],
             "Lanche": [
                 { "nome": "Bala Fine", "descricao": "", "preco": "8.99" },
                 { "nome": "Bolo (fatia)", "descricao": "", "preco": "10.00" },
                 { "nome": "Bolo de Pote", "descricao": "", "preco": "8.00" },
-                { "nome": "Cafe Expresso", "descricao": "", "preco": "5.00" },
                 { "nome": "Coxinha", "descricao": "", "preco": "8.00" },
-                { "nome": "Coxinha Especial", "descricao": "Com catupiry ou outros", "preco": "10.00" },
+                { "nome": "Coxinha Especial", "descricao": "", "preco": "10.00" },
                 { "nome": "Cupcake", "descricao": "", "preco": "5.00" },
                 { "nome": "Empada", "descricao": "", "preco": "8.00" },
                 { "nome": "Empada Doce", "descricao": "", "preco": "8.00" },
@@ -349,13 +350,14 @@
                 { "nome": "Vitamina (diversas)", "descricao": "", "preco": "12.00" }
             ],
             "Bebidas": [
-                { "nome": "Água com Gás 500ml", "descricao": "", "preco": "5.00" },
-                { "nome": "Água sem Gás 500ml", "descricao": "", "preco": "4.00" },
-                { "nome": "Água Tônica lata 350ml", "descricao": "", "preco": "6.50" },
+                { "nome": "Agua com Gás 500ml", "descricao": "", "preco": "5.00" },
+                { "nome": "Agua sem Gás 500ml", "descricao": "", "preco": "4.00" },
+                { "nome": "Agua Tônica lata 350ml", "descricao": "", "preco": "6.50" },
                 { "nome": "Amstel lata 295ml", "descricao": "", "preco": "8.00" },
                 { "nome": "Aquarius Fresh", "descricao": "", "preco": "7.50" },
                 { "nome": "Café com Leite (média)", "descricao": "Xícara média de café", "preco": "6.00" },
                 { "nome": "Café com Leite (pequeno)", "descricao": "Xícara pequena", "preco": "3.00" },
+                { "nome": "Café Expresso", "descricao": "", "preco": "5.00" },
                 { "nome": "Café s/ Leite (pequeno)", "descricao": "Xícara pequena", "preco": "2.00" },
                 { "nome": "Café sem Leite (média)", "descricao": "Xícara média", "preco": "4.00" },
                 { "nome": "Caipirinha de Abacaxi", "descricao": "", "preco": "15.00" },
@@ -363,7 +365,7 @@
                 { "nome": "Caipirinha de Limão", "descricao": "", "preco": "15.00" },
                 { "nome": "Caipirinha de Maracujá", "descricao": "", "preco": "18.00" },
                 { "nome": "Caipirinha de Tangerina", "descricao": "", "preco": "15.00" },
-                { "nome": "Capuccino (coffee)", "descricao": "", "preco": "9.00" },
+                { "nome": "Capuccino", "descricao": "", "preco": "9.00" },
                 { "nome": "Chá Artesanal (diversos)", "descricao": "400 ml", "preco": "9.00" },
                 { "nome": "Chá em sachê", "descricao": "", "preco": "4.00" },
                 { "nome": "Chocolate Gelado", "descricao": "", "preco": "10.00" },
@@ -372,6 +374,7 @@
                 { "nome": "H2O", "descricao": "", "preco": "7.50" },
                 { "nome": "Ice Tea (chá gelado) Mate c/gás", "descricao": "", "preco": "7.50" },
                 { "nome": "Itaipava 350ml", "descricao": "", "preco": "7.00" },
+                { "nome": "Malzebier", "descricao": "", "preco": "7.00" },
                 { "nome": "Refrigerante 1 litro Coca-cola", "descricao": "Coca Cola", "preco": "10.00" },
                 { "nome": "Refrigerante 1 litro Fanta", "descricao": "", "preco": "10.00" },
                 { "nome": "Refrigerante 1lt - Pepsi, Soda, Guaraná", "descricao": "Guaraná Antarctica, Pepsi, Soda Limonada", "preco": "10.00" },
@@ -382,7 +385,7 @@
                 { "nome": "Refrigerante pet 200ml Coca Cola", "descricao": "", "preco": "3.00" },
                 { "nome": "Refrigerante pet 200ml Fanta", "descricao": "", "preco": "3.00" },
                 { "nome": "Refrigerante pet 230ml Goob", "descricao": "", "preco": "2.00" },
-                { "nome": "Refrigerante pet 600ml Coca Cola", "descricao": "", "preco": "7.50" },
+                { "nome": "Refrigerante pet 600ml Coca-Cola", "descricao": "", "preco": "7.50" },
                 { "nome": "Refrigertante Lata 350ml  Fanta", "descricao": "", "preco": "6.00" },
                 { "nome": "Refrigertante Lata 350ml Guaraná Antarctica", "descricao": "", "preco": "6.00" },
                 { "nome": "Rerigerante Lata 350ml Kuat Zero", "descricao": "", "preco": "6.00" },
@@ -417,7 +420,7 @@
                 { "nome": "Carne do Sol com Fritas", "descricao": "Carne do Sol com batatas fritas", "preco": "35.00" },
                 { "nome": "Codorna", "descricao": "", "preco": "18.00" },
                 { "nome": "Escondidinho de Camarão", "descricao": "", "preco": "25.00" },
-                { "nome": "Escondidinho de Carne do Sol", "descricao": "", "preco": "22.00" }
+                { "nome": "Escondidinho de Carne do Sol", "descricao": "", "preco": "25.00" }
             ],
             "Pastel": [
                 { "nome": "Pastel de Camarão", "descricao": "", "preco": "19.00" },
