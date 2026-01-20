@@ -135,6 +135,24 @@
             border-bottom: 3px solid #8b3b9e;
         }
 
+        .categoria-aviso {
+            background: #e8f5e9;
+            border-left: 4px solid #4CAF50;
+            padding: 0.8rem 1rem;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            color: #2e7d32;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .categoria-aviso::before {
+            content: "🎁";
+            font-size: 1.2rem;
+        }
+
         .item-card {
             background: white;
             border-radius: 15px;
@@ -226,7 +244,7 @@
             <div class="contato-info">
                 <div class="contato-item">
                     <span>📞</span>
-                    <p>(71) 99684-0247</p>
+                    <p>(71) 9684-0247</p>
                 </div>
                 <div class="contato-item">
                     <span>📍</span>
@@ -304,27 +322,28 @@
             "Almoço": [
                 { "nome": "Almoço - Bife a Cavalo", "descricao": "Servido com feijão (caldo ou tropeiro), arroz, macarrão e salada", "preco": "30.00" },
                 { "nome": "Almoço - Bife Acebolado", "descricao": "Servido com feijão (caldo ou tropeiro), arroz, macarrão e salada", "preco": "30.00" },
-                { "nome": "Almoço - Bisteca Suína", "descricao": "Servido com feijão (caldo ou tropeiro), arroz, macarrão e salada", "preco": "30.00" },
+                { "nome": "Almoço - Bisteca Suina", "descricao": "Servido com feijão (caldo ou tropeiro), arroz, macarrão e salada", "preco": "30.00" },
                 { "nome": "Almoço - Camarão Empanado", "descricao": "Servido com arroz ou macarrão e purê de batata", "preco": "35.00" },
                 { "nome": "Almoço - Carne de Panela", "descricao": "Servido com feijão (caldo ou tropeiro), arroz, macarrão e salada", "preco": "30.00" },
                 { "nome": "Almoço - Churrasco Misto", "descricao": "Servido com feijão (caldo ou tropeiro), arroz, macarrão e salada", "preco": "30.00" },
                 { "nome": "Almoço - Contra Filé", "descricao": "Servido com feijão (caldo ou tropeiro), arroz, macarrão e salada", "preco": "30.00" },
-                { "nome": "Almoço - Dobradinha", "descricao": "Servido com feijão (caldo ou tropeiro), arroz, macarrão(opcional) e salada", "preco": "35.00" },
-                { "nome": "Almoço - Escondidinho de Camarão", "descricao": "Servido com Arroz e purê de batata.", "preco": "35.00" },
+                { "nome": "Almoço - Diversos", "descricao": "Almoço corporativo", "preco": "28.00" },
+                { "nome": "Almoço - Dobradinha", "descricao": "Servido com feijão (caldo ou tropeiro), arroz, macarrão e salada", "preco": "35.00" },
+                { "nome": "Almoço - Escondidinho de Camarão", "descricao": "Refeições especiais: Comida baiana, Dobradinha, Feijoada, Lasanha, outros.", "preco": "35.00" },
                 { "nome": "Almoço - Fígado Acebolado", "descricao": "Servido com feijão (caldo ou tropeiro), arroz, macarrão e salada", "preco": "30.00" },
                 { "nome": "Almoço - Frango a Milanesa", "descricao": "Servido com feijão (caldo ou tropeiro), arroz, macarrão e salada", "preco": "30.00" },
                 { "nome": "Almoço - Frango a Parmegiana", "descricao": "Servido com Arroz ou macarrão e purê de batata", "preco": "35.00" },
-                { "nome": "Almoço - Frango a Passarinho", "descricao": "Servido com feijão (caldo ou tropeiro), arroz, macarrão e salada", "preco": "30.00" },
-                { "nome": "Almoço - Frango Assado", "descricao": "Servido com feijão, arroz, macarrão e salada", "preco": "30.00" },
-                { "nome": "Almoço - Frango Cozido c/batata", "descricao": "Servido com feijão (caldo ou tropeiro), arroz, macarrão e salada", "preco": "30.00" },
+                { "nome": "Almoço - Frango a Passarinho", "descricao": "", "preco": "30.00" },
+                { "nome": "Almoço - Frango Assado", "descricao": "Comida caseira: carne bovina, suína ou frango - acompanhamentos: feijão, arroz, macarrão e salada", "preco": "30.00" },
+                { "nome": "Almoço - Frango Cozido c/batata", "descricao": "", "preco": "30.00" },
                 { "nome": "Almoço - Lasanha Bolonhesa ou Frango", "descricao": "", "preco": "35.00" },
-                { "nome": "Almoço - Moqueca de Peixe", "descricao": "Servido com pirão e arroz", "preco": "30.00" },
+                { "nome": "Almoço - Moqueca de Peixe", "descricao": "Servido com pirão, arroz", "preco": "30.00" },
                 { "nome": "Almoço - Omelete de Carne ou Frango", "descricao": "Servido com feijão (caldo ou tropeiro), arroz, macarrão e salada", "preco": "30.00" },
                 { "nome": "Almoco - Panqueca", "descricao": "Servido com feijão (caldo ou tropeiro), arroz, macarrão e salada", "preco": "30.00" },
-                { "nome": "Almoço - Peixe a Escabeche c/ molho de Camarão", "descricao": "Servido com arroz e purê de batata", "preco": "35.00" },
-                { "nome": "Almoço - Peixe com Camarão", "descricao": "Servido com arroz e purê de batata", "preco": "35.00" },
-                { "nome": "Almoço - Peixe Frito", "descricao": "Servido com feijão (caldo ou tropeiro), arroz, macarrão e salada", "preco": "30.00" },
-                { "nome": "Moqueca de Camarão - Completa p/ 2", "descricao": "Servido com arroz, pirão e purê de batata ou farofa", "preco": "120.00" }
+                { "nome": "Almoço - Peixe a Escabeche c/ molho de Camarão", "descricao": "", "preco": "35.00" },
+                { "nome": "Almoço - Peixe com Camarão", "descricao": "Servido com arroz ou macarrão e purê de batata", "preco": "35.00" },
+                { "nome": "Almoço Peixe Frito", "descricao": "", "preco": "30.00" },
+                { "nome": "Moqueca de Camarao - Completa p/ 2", "descricao": "Servido com arroz, pirão e purê de batata", "preco": "120.00" }
             ],
             "Lanche": [
                 { "nome": "Bala Fine", "descricao": "", "preco": "8.99" },
@@ -460,7 +479,7 @@
             ],
             "Sobremesa": [
                 { "nome": "Doce de Leite (Caseiro)", "descricao": "Delicioso doce de leite caseiro", "preco": "10.00" },
-                { "nome": "Mousse de Limão", "descricao": "Surpreendente mousse de limão", "preco": "8.00" },
+                { "nome": "Mousse de Limao", "descricao": "Surpreendente mousse de limão", "preco": "8.00" },
                 { "nome": "Mousse de Maracujá", "descricao": "Maravilhoso mousse de maracujá", "preco": "8.00" },
                 { "nome": "Pudim", "descricao": "", "preco": "5.00" }
             ],
@@ -491,6 +510,14 @@
                 titulo.className = 'categoria-titulo';
                 titulo.textContent = categoria;
                 categoriaSection.appendChild(titulo);
+
+                // Adiciona aviso especial para a categoria Almoço
+                if (categoria === 'Almoço') {
+                    const aviso = document.createElement('div');
+                    aviso.className = 'categoria-aviso';
+                    aviso.innerHTML = '<strong>🎁 Promoção Especial:</strong> Todos os pratos de almoço incluem suco 300ml ou refrigerante mini pet 230ml gratuitamente!';
+                    categoriaSection.appendChild(aviso);
+                }
 
                 const grid = document.createElement('div');
                 grid.className = 'cardapio-grid';
