@@ -223,18 +223,6 @@
             font-weight: 500;
         }
 
-        .badge-disponivel {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: #4CAF50;
-            color: white;
-            padding: 0.2rem 0.6rem;
-            border-radius: 12px;
-            font-size: 0.7rem;
-            font-weight: 600;
-        }
-
         .footer {
             background: #333;
             color: white;
@@ -281,10 +269,6 @@
                     <span>📍</span>
                     <p>Praça do Baixo Formoso, s/n<br>Porto de Sauipe - Entre Rios - BA</p>
                 </div>
-                <div class="contato-item">
-                    <span>✅</span>
-                    <p>Todos os 182 itens disponíveis!</p>
-                </div>
             </div>
         </div>
     </section>
@@ -314,7 +298,7 @@
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 Ylma Cake's & Cia - Todos os direitos reservados • 182 itens disponíveis</p>
+            <p>&copy; 2025 Ylma Cake's & Cia - Todos os direitos reservados</p>
         </div>
     </footer>
 
@@ -574,7 +558,6 @@
                     itemCard.className = 'item-card';
                     
                     let itemHTML = `
-                        <div class="badge-disponivel">DISPONÍVEL</div>
                         <div class="item-header">
                             <h3 class="item-nome">${item.nome}</h3>
                             <span class="item-preco">${formatarPreco(item.preco)}</span>
