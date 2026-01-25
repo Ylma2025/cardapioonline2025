@@ -133,17 +133,6 @@
             margin-bottom: 1.5rem;
             padding-bottom: 0.5rem;
             border-bottom: 3px solid #8b3b9e;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .categoria-contador {
-            font-size: 0.9rem;
-            background: #8b5fad;
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
         }
 
         .categoria-aviso {
@@ -237,7 +226,6 @@
             .contato-info { flex-direction: column; gap: 1rem; }
             .cardapio-grid { grid-template-columns: 1fr; }
             .filtros .container { justify-content: flex-start; }
-            .categoria-titulo { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
         }
     </style>
 </head>
@@ -246,15 +234,15 @@
         <div class="container">
             <div class="logo">
                 <h1>Ylma Cake's & Cia</h1>
-                <p>Sabores que encantam • Cardápio Completo</p>
+                <p>Sabores que encantam</p>
             </div>
         </div>
     </header>
 
     <section class="hero">
         <div class="container">
-            <h2>Cardápio Digital Completo</h2>
-            <p>182 deliciosas opções para todos os momentos</p>
+            <h2>Cardápio Digital</h2>
+            <p>Deliciosas opções para todos os momentos</p>
         </div>
     </section>
 
@@ -275,18 +263,18 @@
 
     <section class="filtros">
         <div class="container">
-            <button class="filtro-btn active" data-categoria="all">Todos (182)</button>
-            <button class="filtro-btn" data-categoria="Bebidas">Bebidas (68)</button>
-            <button class="filtro-btn" data-categoria="Café da Manhã">Café da Manhã (31)</button>
-            <button class="filtro-btn" data-categoria="Almoço">Almoço (25)</button>
-            <button class="filtro-btn" data-categoria="Lanche">Lanches (18)</button>
-            <button class="filtro-btn" data-categoria="Petisco">Petiscos (8)</button>
-            <button class="filtro-btn" data-categoria="Pastel">Pastel (8)</button>
-            <button class="filtro-btn" data-categoria="Pizza">Pizza (14)</button>
-            <button class="filtro-btn" data-categoria="Espetinho">Espetinho (9)</button>
-            <button class="filtro-btn" data-categoria="Doces">Doces (5)</button>
-            <button class="filtro-btn" data-categoria="Sobremesa">Sobremesa (4)</button>
-            <button class="filtro-btn" data-categoria="Bolo (encomenda)">Bolos (4)</button>
+            <button class="filtro-btn active" data-categoria="all">Todos</button>
+            <button class="filtro-btn" data-categoria="Bebidas">Bebidas</button>
+            <button class="filtro-btn" data-categoria="Café da Manhã">Café da Manhã</button>
+            <button class="filtro-btn" data-categoria="Almoço">Almoço</button>
+            <button class="filtro-btn" data-categoria="Lanche">Lanches</button>
+            <button class="filtro-btn" data-categoria="Petisco">Petiscos</button>
+            <button class="filtro-btn" data-categoria="Pastel">Pastel</button>
+            <button class="filtro-btn" data-categoria="Pizza">Pizza</button>
+            <button class="filtro-btn" data-categoria="Espetinho">Espetinho</button>
+            <button class="filtro-btn" data-categoria="Doces">Doces</button>
+            <button class="filtro-btn" data-categoria="Sobremesa">Sobremesa</button>
+            <button class="filtro-btn" data-categoria="Bolo (encomenda)">Bolos</button>
         </div>
     </section>
 
@@ -298,7 +286,7 @@
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Ylma Cake's & Cia - Todos os direitos reservados</p>
+            <p>&copy; 2026 Ylma Cake's & Cia - Todos os direitos reservados</p>
         </div>
     </footer>
 
@@ -533,13 +521,7 @@
                 
                 const titulo = document.createElement('h2');
                 titulo.className = 'categoria-titulo';
-                
-                const contadorSpan = document.createElement('span');
-                contadorSpan.className = 'categoria-contador';
-                contadorSpan.textContent = `${itens.length} itens`;
-                
                 titulo.textContent = categoria;
-                titulo.appendChild(contadorSpan);
                 categoriaSection.appendChild(titulo);
 
                 // Adiciona aviso especial para a categoria Almoço
