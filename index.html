@@ -1,1 +1,583 @@
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ylma Cake's & Cia - Cardápio Completo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f8f4ff 0%, #ffffff 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #8b5fad 0%, #6d3b9e 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(109, 59, 158, 0.3);
+        }
+
+        .logo h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .logo p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #6d3b9e 0%, #8b5fad 100%);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+        }
+
+        .contato {
+            background: white;
+            padding: 2rem 0;
+            border-bottom: 3px solid #8b5fad;
+        }
+
+        .contato-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .contato-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .filtros {
+            background: white;
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .filtros .container {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            overflow-x: auto;
+            padding-bottom: 10px;
+        }
+
+        .filtro-btn {
+            background: #f0e6ff;
+            border: 2px solid #8b5fad;
+            color: #6d3b9e;
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .filtro-btn:hover,
+        .filtro-btn.active {
+            background: #8b5fad;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .cardapio {
+            padding: 3rem 0;
+        }
+
+        .cardapio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .categoria-section {
+            margin-bottom: 3rem;
+        }
+
+        .categoria-titulo {
+            font-size: 1.8rem;
+            color: #6d3b9e;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #8b3b9e;
+        }
+
+        .categoria-aviso {
+            background: #e8f5e9;
+            border-left: 4px solid #4CAF50;
+            padding: 0.8rem 1rem;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            color: #2e7d32;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .categoria-aviso::before {
+            content: "🎁";
+            font-size: 1.2rem;
+        }
+
+        .item-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-left: 4px solid #8b5fad;
+            position: relative;
+            height: 100%;
+        }
+
+        .item-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(139, 95, 173, 0.2);
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .item-nome {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #333;
+            flex: 1;
+        }
+
+        .item-preco {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #6d3b9e;
+            background: #f0e6ff;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+        }
+
+        .item-descricao {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+            font-size: 0.95rem;
+        }
+
+        .item-descricao p {
+            margin-bottom: 0.5rem;
+        }
+
+        .acompanhamentos {
+            color: #8b5fad;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            padding-top: 0.5rem;
+            border-top: 1px dashed #e0e0e0;
+            font-weight: 500;
+        }
+
+        .footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .logo h1 { font-size: 2rem; }
+            .hero h2 { font-size: 1.8rem; }
+            .hero p { font-size: 1rem; }
+            .contato-info { flex-direction: column; gap: 1rem; }
+            .cardapio-grid { grid-template-columns: 1fr; }
+            .filtros .container { justify-content: flex-start; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>Ylma Cake's & Cia</h1>
+                <p>Sabores que encantam</p>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h2>Cardápio Digital</h2>
+            <p>Deliciosas opções para todos os momentos</p>
+        </div>
+    </section>
+
+    <section class="contato">
+        <div class="container">
+            <div class="contato-info">
+                <div class="contato-item">
+                    <span>📞</span>
+                    <p>(71) 9684-0247</p>
+                </div>
+                <div class="contato-item">
+                    <span>📍</span>
+                    <p>Praça do Baixo Formoso, s/n<br>Porto de Sauipe - Entre Rios - BA</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="filtros">
+        <div class="container">
+            <button class="filtro-btn active" data-categoria="all">Todos</button>
+            <button class="filtro-btn" data-categoria="Bebidas">Bebidas</button>
+            <button class="filtro-btn" data-categoria="Café da Manhã">Café da Manhã</button>
+            <button class="filtro-btn" data-categoria="Almoço">Almoço</button>
+            <button class="filtro-btn" data-categoria="Lanche">Lanches</button>
+            <button class="filtro-btn" data-categoria="Petisco">Petiscos</button>
+            <button class="filtro-btn" data-categoria="Pastel">Pastel</button>
+            <button class="filtro-btn" data-categoria="Pizza">Pizza</button>
+            <button class="filtro-btn" data-categoria="Espetinho">Espetinho</button>
+            <button class="filtro-btn" data-categoria="Doces">Doces</button>
+            <button class="filtro-btn" data-categoria="Sobremesa">Sobremesa</button>
+            <button class="filtro-btn" data-categoria="Bolo (encomenda)">Bolos</button>
+        </div>
+    </section>
+
+    <section class="cardapio">
+        <div class="container">
+            <div id="cardapio-container" class="cardapio-grid"></div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Ylma Cake's & Cia - Todos os direitos reservados</p>
+        </div>
+    </footer>
+
+    <script>
+        // DADOS COMPLETOS ATUALIZADOS DO CSV - TODOS OS ITENS COM AVAILABLE FOR SALE = Y
+        const cardapioData = {
+            "Bebidas": [
+                { "nome": "Agua com Gás 500ml", "descricao": "", "preco": "5.00" },
+                { "nome": "Agua sem Gás 500ml", "descricao": "", "preco": "4.00" },
+                { "nome": "Agua Tônica lata 350ml", "descricao": "", "preco": "6.50" },
+                { "nome": "Amstel lata 295ml", "descricao": "", "preco": "8.00" },
+                { "nome": "Aquarius Fresh", "descricao": "", "preco": "7.50" },
+                { "nome": "Café com Leite (média)", "descricao": "Xícara média de café", "preco": "6.00" },
+                { "nome": "Café com Leite (pequeno)", "descricao": "Xícara pequena", "preco": "3.00" },
+                { "nome": "Café Expresso", "descricao": "", "preco": "5.00" },
+                { "nome": "Café s/ Leite (pequeno)", "descricao": "Xícara pequena", "preco": "2.00" },
+                { "nome": "Café sem Leite (média)", "descricao": "Xícara média", "preco": "4.00" },
+                { "nome": "Caipirinha de Abacaxi", "descricao": "", "preco": "15.00" },
+                { "nome": "Caipirinha de Acerola", "descricao": "", "preco": "15.00" },
+                { "nome": "Caipirinha de Limão", "descricao": "", "preco": "15.00" },
+                { "nome": "Caipirinha de Maracujá", "descricao": "", "preco": "18.00" },
+                { "nome": "Caipirinha de Tangerina", "descricao": "", "preco": "15.00" },
+                { "nome": "Capuccino", "descricao": "", "preco": "9.00" },
+                { "nome": "Chá Artesanal (diversos)", "descricao": "400 ml", "preco": "9.00" },
+                { "nome": "Chá em sachê", "descricao": "", "preco": "4.00" },
+                { "nome": "Chocolate Gelado", "descricao": "", "preco": "10.00" },
+                { "nome": "Chocolate Quente", "descricao": "", "preco": "15.00" },
+                { "nome": "Coquetel de Frutas (diversas)", "descricao": "Coquetel de Frutas sem álcool", "preco": "20.00" },
+                { "nome": "Fresqueto Uva 270ml", "descricao": "", "preco": "4.00" },
+                { "nome": "H2O", "descricao": "", "preco": "7.50" },
+                { "nome": "Ice Tea (chá gelado) Mate c/gás", "descricao": "", "preco": "7.50" },
+                { "nome": "Itaipava 350ml", "descricao": "", "preco": "7.00" },
+                { "nome": "Malzebier", "descricao": "", "preco": "7.00" },
+                { "nome": "Refrigerante 1 litro Coca-cola(zero/normal)", "descricao": "Coca Cola", "preco": "10.00" },
+                { "nome": "Refrigerante 1 litro Fanta", "descricao": "", "preco": "10.00" },
+                { "nome": "Refrigerante 1lt - Pepsi, Soda, Guaraná", "descricao": "Guaraná Antarctica, Pepsi, Soda Limonada", "preco": "10.00" },
+                { "nome": "Refrigerante Lata 350ml", "descricao": "", "preco": "6.00" },
+                { "nome": "Refrigerante Lata 350ml Coca-Cola", "descricao": "Coca, Fanta, Guaraná, Limão 350ml", "preco": "6.00" },
+                { "nome": "Refrigerante Lata 350ml Sprite", "descricao": "", "preco": "6.00" },
+                { "nome": "Refrigerante Lemon Fresh 510ml", "descricao": "", "preco": "7.50" },
+                { "nome": "Refrigerante pet 200ml Coca Cola", "descricao": "", "preco": "3.50" },
+                { "nome": "Refrigerante pet 200ml Fanta", "descricao": "", "preco": "3.50" },
+                { "nome": "Refrigerante pet 230ml Goob", "descricao": "", "preco": "2.50" },
+                { "nome": "Refrigerante pet 600ml Coca-Cola (zero/normal)", "descricao": "", "preco": "7.50" },
+                { "nome": "Refrigertante Lata 350ml Fanta", "descricao": "", "preco": "6.00" },
+                { "nome": "Refrigertante Lata 350ml Guaraná Antarctica", "descricao": "", "preco": "6.00" },
+                { "nome": "Rerigerante Lata 350ml Kuat(zero/normal)", "descricao": "", "preco": "6.00" },
+                { "nome": "Roska de Abacaxi", "descricao": "", "preco": "18.00" },
+                { "nome": "Roska de Acerola", "descricao": "", "preco": "18.00" },
+                { "nome": "Roska de Kiwi", "descricao": "", "preco": "28.00" },
+                { "nome": "Roska de Limão", "descricao": "", "preco": "18.00" },
+                { "nome": "Roska de Maracujá", "descricao": "", "preco": "20.00" },
+                { "nome": "Roska de Morango", "descricao": "", "preco": "28.00" },
+                { "nome": "Roska de Tangerina", "descricao": "", "preco": "18.00" },
+                { "nome": "Roska de Umbu", "descricao": "", "preco": "18.00" },
+                { "nome": "Skol lata", "descricao": "", "preco": "7.00" },
+                { "nome": "Suco de Abacaxi 500ml", "descricao": "", "preco": "12.00" },
+                { "nome": "Suco de Frutas Jarra 900ml", "descricao": "", "preco": "25.00" },
+                { "nome": "Suco de Frutas 300ml", "descricao": "", "preco": "15.00" },
+                { "nome": "Suco de Laranja 300ml", "descricao": "", "preco": "10.00" },
+                { "nome": "Suco de Laranja 500ml", "descricao": "", "preco": "12.00" },
+                { "nome": "Suco de Laranja Jarra 900ml", "descricao": "", "preco": "19.00" },
+                { "nome": "Suco de Limão 300ml", "descricao": "", "preco": "10.00" },
+                { "nome": "Suco de Limão 500ml", "descricao": "", "preco": "12.00" },
+                { "nome": "Suco de Limão Jarra 900ml", "descricao": "", "preco": "18.00" },
+                { "nome": "Suco de Maracujá 500ml", "descricao": "", "preco": "14.00" },
+                { "nome": "Suco de Maracujá Jarra 900ml", "descricao": "", "preco": "25.00" },
+                { "nome": "Suco de Morango 500ml", "descricao": "", "preco": "17.00" },
+                { "nome": "Suco de Morango Jarra 900ml", "descricao": "", "preco": "30.00" },
+                { "nome": "Suco Del Vale", "descricao": "", "preco": "6.00" }
+            ],
+            "Café da Manhã": [
+                { "nome": "Aipim Cozido - Charque", "descricao": "Carne, ovo, tomate, alface e cebola", "preco": "30.00" },
+                { "nome": "Aipim Cozido - Calabresa", "descricao": "Aipim, calabresa, ovo, tomate, alface e cebola", "preco": "30.00" },
+                { "nome": "Aipim Cozido - Carne do Sol", "descricao": "Carne, Ovo, tomate, alface e cebola", "preco": "30.00" },
+                { "nome": "Aipim Cozido - Fumeiro", "descricao": "Carne de fumeiro, ovo, tomate, alface, cebola", "preco": "30.00" },
+                { "nome": "Aipim Cozido - Ovos", "descricao": "Ovos, tomate, alface, cebola", "preco": "25.00" },
+                { "nome": "Banana da Terra - Porção", "descricao": "Porção de banana da terra", "preco": "18.00" },
+                { "nome": "Banana da Terra Frita", "descricao": "", "preco": "15.00" },
+                { "nome": "Batata Doce - Porção", "descricao": "Porção de batata doce cozida", "preco": "13.00" },
+                { "nome": "Cuscuz com Leite de Côco (grande)", "descricao": "Cuscuz de milho com leite de côco natural", "preco": "24.00" },
+                { "nome": "Cuscuz com Leite de Côco (pequeno)", "descricao": "", "preco": "18.00" },
+                { "nome": "Cuscuz de Tapioca", "descricao": "Tapioca, leite de côco", "preco": "13.00" },
+                { "nome": "Cuscuz Temperado - Calabresa", "descricao": "Calabresa, ovo, alface tomate, cebola", "preco": "30.00" },
+                { "nome": "Cuscuz Temperado - Carne do Sol", "descricao": "Carne do Sol, ovo, alface, tomate, cebola", "preco": "30.00" },
+                { "nome": "Cuscuz Temperado - Carne Seca", "descricao": "Carne seca, ovo, queijo coalho, tomate e cebola", "preco": "35.00" },
+                { "nome": "Cuscuz Temperado - Charque", "descricao": "Charque, ovo, tomate, alface e cebola", "preco": "30.00" },
+                { "nome": "Cuscuz Temperado - Fumeiro", "descricao": "", "preco": "30.00" },
+                { "nome": "Cuscuz Temperado - Ovos", "descricao": "Dois ovos, tomate, alface e cebola", "preco": "25.00" },
+                { "nome": "Cuscuz temperado (pequeno)", "descricao": "", "preco": "20.00" },
+                { "nome": "Hambúrguer Artesanal", "descricao": "Pão especial, carne, calabresa, bacon, queijo, presunto, tomate, alface e cebola", "preco": "30.00" },
+                { "nome": "Misto Quente", "descricao": "Pão, queijo e presunto", "preco": "12.00" },
+                { "nome": "Omelete de Carne", "descricao": "", "preco": "24.00" },
+                { "nome": "Omelete de Frango", "descricao": "", "preco": "22.00" },
+                { "nome": "Ovo Cozido", "descricao": "", "preco": "3.00" },
+                { "nome": "Ovo Frito", "descricao": "Ovo frito", "preco": "3.00" },
+                { "nome": "Pão com mantega", "descricao": "", "preco": "8.00" },
+                { "nome": "Pão com ovo", "descricao": "", "preco": "8.00" },
+                { "nome": "Pão com ovos", "descricao": "", "preco": "8.00" },
+                { "nome": "Sanduiche Americano", "descricao": "Pão, queijo, presunto, ovo, tomate, alface e cebola", "preco": "16.00" },
+                { "nome": "Sanduíche de Frango", "descricao": "Pão baguete, frango, bacon, calabresa, mussarela, tomate, alface e cebola", "preco": "28.00" },
+                { "nome": "Sanduíche de Picanha", "descricao": "Pão baguete, picanha, bacon, requeijão, tomate, alface e cebola", "preco": "35.00" },
+                { "nome": "Sanduíche de Toscana", "descricao": "Pão baguete, toscana, queijo, tomate, alface e cebola", "preco": "22.00" },
+                { "nome": "Tapioca com Frango", "descricao": "Tapioca com frango desfiado", "preco": "12.00" },
+                { "nome": "Tapioca com ovos", "descricao": "", "preco": "12.00" },
+                { "nome": "Tapioca Mista", "descricao": "", "preco": "12.00" },
+                { "nome": "Tapioca Mista c/ ovos (queijo/presunto/ovos)", "descricao": "", "preco": "17.00" }
+            ],
+            "Almoço": [
+                { "nome": "Almoço - Bife a Cavalo", "descricao": "Servido com feijão (caldo ou tropeiro), arroz, macarrão e salada", "preco": "30.00" },
+                { "nome": "Almoço - Bife Acebolado", "descricao": "Servido com feijão (caldo ou tropeiro), arroz, macarrão e salada", "preco": "30.00" },
+                { "nome": "Almoço - Bisteca Suína", "descricao": "Servido com feijão (caldo ou tropeiro), arroz, macarrão e salada", "preco": "30.00" },
+                { "nome": "Almoço - Camarão Empanado", "descricao": "Servido com arroz ou macarrão e purê de batata", "preco": "35.00" },
+                { "nome": "Almoço - Carne de Panela", "descricao": "Servido com feijão (caldo ou tropeiro), arroz, macarrão e salada", "preco": "30.00" },
+                { "nome": "Almoço - Churrasco Misto", "descricao": "Servido com feijão (caldo ou tropeiro), arroz, macarrão e salada", "preco": "30.00" },
+                { "nome": "Almoço - Contra Filé", "descricao": "Servido com feijão (caldo ou tropeiro), arroz, macarrão e salada", "preco": "30.00" },
+                { "nome": "Almoço - Diversos", "descricao": "Almoço corporativo", "preco": "28.00" },
+                { "nome": "Almoço - Dobradinha", "descricao": "Servido com, arroz, macarrão (opcional) e salada", "preco": "35.00" },
+                { "nome": "Almoço - Escondidinho de Camarão", "descricao": "Refeições especiais", "preco": "35.00" },
+                { "nome": "Almoço - Fígado Acebolado", "descricao": "Servido com feijão (caldo ou tropeiro), arroz, macarrão e salada", "preco": "30.00" },
+                { "nome": "Almoço - Frango a Milanesa", "descricao": "Servido com feijão (caldo ou tropeiro), arroz, macarrão e salada", "preco": "30.00" },
+                { "nome": "Almoço - Frango a Parmegiana", "descricao": "Servido com Arroz ou macarrão e purê de batata", "preco": "35.00" },
+                { "nome": "Almoço - Frango a Passarinho", "descricao": "", "preco": "30.00" },
+                { "nome": "Almoço - Frango Assado", "descricao": "Servido com feijão, arroz, macarrão e salada", "preco": "30.00" },
+                { "nome": "Almoço - Frango Cozido c/batata", "descricao": "", "preco": "30.00" },
+                { "nome": "Almoço - Lasanha Bolonhesa ou Frango", "descricao": "", "preco": "35.00" },
+                { "nome": "Almoço - Moqueca de Peixe", "descricao": "Servido com pirão, arroz", "preco": "30.00" },
+                { "nome": "Almoço - Omelete de Carne ou Frango", "descricao": "Servido com feijão (caldo ou tropeiro), arroz, macarrão e salada", "preco": "30.00" },
+                { "nome": "Almoco - Panqueca", "descricao": "Servido com feijão (caldo ou tropeiro), arroz, macarrão e salada", "preco": "30.00" },
+                { "nome": "Almoço - Peixe a Escabeche c/ molho de Camarão", "descricao": "", "preco": "35.00" },
+                { "nome": "Almoço - Peixe com Camarão", "descricao": "Servido com arroz e purê de batata", "preco": "35.00" },
+                { "nome": "Almoço - Peixe Frito", "descricao": "Servido com feijão (caldo ou tropeiro), arroz, macarrão e salada", "preco": "30.00" },
+                { "nome": "Almoço Isca de Frango", "descricao": "Servido com feijão (caldo ou tropeiro), arroz, macarrão e salada", "preco": "30.00" },
+                { "nome": "Moqueca de Camarao - Completa p/ 2", "descricao": "Servido com arroz, pirão e purê de batata", "preco": "120.00" }
+            ],
+            "Lanche": [
+                { "nome": "Bolo (fatia)", "descricao": "", "preco": "10.00" },
+                { "nome": "Bolo de Pote", "descricao": "", "preco": "8.00" },
+                { "nome": "Coxinha", "descricao": "", "preco": "8.00" },
+                { "nome": "Coxinha Especial", "descricao": "", "preco": "10.00" },
+                { "nome": "Cupcake", "descricao": "", "preco": "5.00" },
+                { "nome": "Empada", "descricao": "", "preco": "8.00" },
+                { "nome": "Empada mini", "descricao": "", "preco": "4.00" },
+                { "nome": "Kibe Frito", "descricao": "", "preco": "12.00" },
+                { "nome": "Pão com ovos e queijo", "descricao": "", "preco": "11.00" },
+                { "nome": "Pao de Queijo", "descricao": "", "preco": "7.00" },
+                { "nome": "Pão Delícia", "descricao": "", "preco": "11.00" },
+                { "nome": "Pastel de Forno", "descricao": "", "preco": "8.00" },
+                { "nome": "Salgadinho", "descricao": "", "preco": "2.50" },
+                { "nome": "Salgados Diversos", "descricao": "", "preco": "12.00" },
+                { "nome": "Torta (fatia)", "descricao": "", "preco": "18.00" },
+                { "nome": "Torta de Limão", "descricao": "Torta sabor limão", "preco": "14.00" },
+                { "nome": "Torta de Maracujá", "descricao": "Torta com sabor maracujá", "preco": "14.00" },
+                { "nome": "Vitamina (diversas)", "descricao": "", "preco": "12.00" }
+            ],
+            "Petisco": [
+                { "nome": "Batata Frita - Porção", "descricao": "", "preco": "20.00" },
+                { "nome": "Caldo de Sururu", "descricao": "", "preco": "15.00" },
+                { "nome": "Camarão Empanado", "descricao": "Camarão frito empanado na farinha de rosca e crocante", "preco": "55.00" },
+                { "nome": "Camarão Encapotado", "descricao": "Camarão empanado com tapioca", "preco": "35.00" },
+                { "nome": "Carne do Sol com Fritas", "descricao": "Carne do Sol com batatas fritas", "preco": "35.00" },
+                { "nome": "Codorna", "descricao": "", "preco": "18.00" },
+                { "nome": "Escondidinho de Camarão", "descricao": "", "preco": "25.00" },
+                { "nome": "Escondidinho de Carne do Sol", "descricao": "", "preco": "25.00" }
+            ],
+            "Pastel": [
+                { "nome": "Pastel de Camarão", "descricao": "", "preco": "19.00" },
+                { "nome": "Pastel de Carne", "descricao": "", "preco": "14.00" },
+                { "nome": "Pastel de Carne com Queijo", "descricao": "", "preco": "16.00" },
+                { "nome": "Pastel de Carne Seca", "descricao": "", "preco": "19.00" },
+                { "nome": "Pastel de Frango", "descricao": "", "preco": "12.00" },
+                { "nome": "Pastel de Toscana com Requeijão", "descricao": "", "preco": "15.00" },
+                { "nome": "Pastel Misto", "descricao": "", "preco": "14.00" },
+                { "nome": "Pastel Três Queijos", "descricao": "", "preco": "17.00" }
+            ],
+            "Pizza": [
+                { "nome": "Pizza de Atum (Brotinho)", "descricao": "molho de tomate e mussarela e cebola", "preco": "19.00" },
+                { "nome": "Pizza de Atum (Grande)", "descricao": "molho de tomate e mussarela", "preco": "55.00" },
+                { "nome": "Pizza de Calabresa (Brotinho)", "descricao": "molho de tomate e mussarela", "preco": "15.00" },
+                { "nome": "Pizza de Calabresa (Grande)", "descricao": "Molho de Tomate e Mussarela", "preco": "42.00" },
+                { "nome": "Pizza de Camarão (Grande)", "descricao": "molho de tomate e mussarela", "preco": "60.00" },
+                { "nome": "Pizza de Frango (Grande)", "descricao": "molho de tomate e mussarela", "preco": "40.00" },
+                { "nome": "Pizza de Frango com Bacon e catupiry(Grande)", "descricao": "Molho de tomate e mussarela", "preco": "46.00" },
+                { "nome": "Pizza de Frango com Catupiry (brotinho)", "descricao": "molho de tomate e mussarela", "preco": "17.00" },
+                { "nome": "Pizza de Frango com Catupiry (Grande)", "descricao": "Molho de tomate e mussarela", "preco": "45.00" },
+                { "nome": "Pizza Portuguesa (Brotinho)", "descricao": "presunto, ovo, cebola, orégano e azeitona", "preco": "18.00" },
+                { "nome": "Pizza Portuguesa (Grande)", "descricao": "Presunto, ovo, tomate, cebola, orégano e azeitona", "preco": "40.00" },
+                { "nome": "Pizza Sertaneja (Grande)", "descricao": "carne seca, queijo coalho e banana da terra", "preco": "55.00" },
+                { "nome": "Pizza Três Queijos (brotinho)", "descricao": "provolone, gorgonzola e queijo coalho", "preco": "20.00" },
+                { "nome": "Pizza Três Queijos (Grande)", "descricao": "provolone, gorgonzola e queijo coalho", "preco": "60.00" }
+            ],
+            "Espetinho": [
+                { "nome": "Espetinho - Frango", "descricao": "Frango, farofa e vinagrete", "preco": "10.00" },
+                { "nome": "Espetinho - Medalhão de Carne", "descricao": "Carne, bacon, farofa e vinagrete", "preco": "20.00" },
+                { "nome": "Espetinho - Medalhão Frango", "descricao": "Frango, bacon farofa e vinagrete", "preco": "18.00" },
+                { "nome": "Espetinho Asa de Frango", "descricao": "Asa de Frango, farofa e vinagrete", "preco": "20.00" },
+                { "nome": "Espetinho de Carne", "descricao": "Carne, farofa e vinagrete", "preco": "12.00" },
+                { "nome": "Espetinho de Coração", "descricao": "Coração de ave, farofa e vinagrete", "preco": "14.00" },
+                { "nome": "Espetinho Misto", "descricao": "Carne, frango, farofa e vinagrete", "preco": "14.00" },
+                { "nome": "Pão de Alho", "descricao": "", "preco": "5.00" },
+                { "nome": "Queijo coalho", "descricao": "", "preco": "14.00" }
+            ],
+            "Doces": [
+                { "nome": "Bala Fine", "descricao": "", "preco": "8.99" },
+                { "nome": "Balas e outros", "descricao": "", "preco": "variable" },
+                { "nome": "Empada Doce", "descricao": "", "preco": "8.00" },
+                { "nome": "Haribo", "descricao": "", "preco": "8.99" }
+            ],
+            "Sobremesa": [
+                { "nome": "Doce de Leite (Caseiro)", "descricao": "Delicioso doce de leite caseiro", "preco": "10.00" },
+                { "nome": "Mousse de Limão", "descricao": "Surpreendente mousse de limão", "preco": "8.00" },
+                { "nome": "Mousse de Maracujá", "descricao": "Maravilhoso mousse de maracujá", "preco": "8.00" },
+                { "nome": "Pudim", "descricao": "", "preco": "5.00" }
+            ],
+            "Bolo (encomenda)": [
+                { "nome": "Bolo 15cm", "descricao": "", "preco": "140.00" },
+                { "nome": "Bolo 20cm", "descricao": "", "preco": "170.00" },
+                { "nome": "Bolo 25cm", "descricao": "", "preco": "240.00" },
+                { "nome": "Bolo 30cm", "descricao": "", "preco": "340.00" }
+            ]
+        };
+
+        function formatarPreco(preco) {
+            const numero = parseFloat(preco);
+            return isNaN(numero) ? preco : `R$ ${numero.toFixed(2).replace('.', ',')}`;
+        }
+
+        function renderizarCardapio(categoriaFiltro = 'all') {
+            const container = document.getElementById('cardapio-container');
+            container.innerHTML = '';
+
+            Object.entries(cardapioData).forEach(([categoria, itens]) => {
+                if (categoriaFiltro !== 'all' && categoriaFiltro !== categoria) return;
+
+                const categoriaSection = document.createElement('div');
+                categoriaSection.className = 'categoria-section';
+                
+                const titulo = document.createElement('h2');
+                titulo.className = 'categoria-titulo';
+                titulo.textContent = categoria;
+                categoriaSection.appendChild(titulo);
+
+                // Adiciona aviso especial para a categoria Almoço
+                if (categoria === 'Almoço') {
+                    const aviso = document.createElement('div');
+                    aviso.className = 'categoria-aviso';
+                    aviso.innerHTML = '<strong>🎁 Promoção Especial:</strong> Todos os pratos de almoço incluem suco 300ml ou refrigerante mini pet 230ml gratuitamente!';
+                    categoriaSection.appendChild(aviso);
+                }
+
+                const grid = document.createElement('div');
+                grid.className = 'cardapio-grid';
+
+                itens.forEach(item => {
+                    const itemCard = document.createElement('div');
+                    itemCard.className = 'item-card';
+                    
+                    let itemHTML = `
+                        <div class="item-header">
+                            <h3 class="item-nome">${item.nome}</h3>
+                            <span class="item-preco">${formatarPreco(item.preco)}</span>
+                        </div>
+                        ${item.descricao ? `<div class="item-descricao">${item.descricao}</div>` : ''}
+                    `;
+                    
+                    itemCard.innerHTML = itemHTML;
+                    grid.appendChild(itemCard);
+                });
+
+                categoriaSection.appendChild(grid);
+                container.appendChild(categoriaSection);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            renderizarCardapio();
+
+            document.querySelectorAll('.filtro-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    renderizarCardapio(this.getAttribute('data-categoria'));
+                });
+            });
+        });
+    </script>
+</body>
+</html>
