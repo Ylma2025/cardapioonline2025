@@ -244,7 +244,7 @@
             <div class="contato-info">
                 <div class="contato-item">
                     <span>📞</span>
-                    <p>(71) 9684-0247<hatsap oop/p>
+                    <p>(71) 9684-0247</p>
                 </div>
                 <div class="contato-item">
                     <span>📍</span>
@@ -257,7 +257,7 @@
     <section class="filtros">
         <div class="container">
             <button class="filtro-btn active" data-categoria="all">Todos</button>
-            <button class="filtro-btn" data-categoria="Café da Manhã">Café da Manhã</button>
+            <button class="filtro-btn" data-categoria="Café da Manhã, Lanche e Jantar">Café da Manhã</button>
             <button class="filtro-btn" data-categoria="Almoço">Almoço</button>
             <button class="filtro-btn" data-categoria="Lanche">Lanches</button>
             <button class="filtro-btn" data-categoria="Bebidas">Bebidas</button>
@@ -286,7 +286,7 @@
     <script>
         // DADOS COMPLETOS DO CSV - TODOS OS ITENS DISPONÍVEIS
         const cardapioData = {
-            "Café da Manhã": [
+            "Café da Manhã, Lanche e Jantar": [
                 { "nome": "Aipim Cozido - Charque", "descricao": "Carne, ovo, tomate, alface e cebola", "preco": "30.00" },
                 { "nome": "Aipim Cozido - Calabresa", "descricao": "Aipim, calabresa, ovo, tomate, alface e cebola", "preco": "30.00" },
                 { "nome": "Aipim Cozido - Carne do Sol", "descricao": "Carne, Ovo, tomate, alface e cebola", "preco": "30.00" },
@@ -295,7 +295,7 @@
                 { "nome": "Banana da Terra - Porção", "descricao": "Porção de banana da terra", "preco": "18.00" },
                 { "nome": "Banana da Terra Frita", "descricao": "", "preco": "15.00" },
                 { "nome": "Batata Doce - Porção", "descricao": "Porção de batata doce cozida", "preco": "13.00" },
-                { "nome": "Cuscuz com Leite de Côco (pequeno)", "descricao": "", "preco": "18.00" },
+                { "nome": "Cuscuz com Leite de Côco (pequeno)", "descricao": "Cuscuz de milho com leite de côco natural", "preco": "18.00" },
                 { "nome": "Cuscuz com Leite de Côco (grande)", "descricao": "Cuscuz de milho com leite de côco natural", "preco": "24.00" },
                 { "nome": "Cuscuz de Tapioca", "descricao": "Tapioca, leite de côco", "preco": "13.00" },
                 { "nome": "Cuscuz Temperado - Calabresa", "descricao": "Calabresa, ovo, alface tomate, cebola", "preco": "30.00" },
@@ -306,23 +306,27 @@
                 { "nome": "Cuscuz Temperado - Ovos", "descricao": "Dois ovos, tomate, alface e cebola", "preco": "25.00" },
                 { "nome": "Cuscuz temperado (pequeno)", "descricao": "", "preco": "20.00" },
                 { "nome": "Hambúrguer Artesanal", "descricao": "Pão especial, carne, calabresa, bacon, queijo, presunto, tomate, alface e cebola", "preco": "30.00" },
+                { "nome": "Misto no pão baguete", "descricao": "Pão baguete com queijo e presunto", "preco": "18.00" },
                 { "nome": "Misto Quente", "descricao": "Pão, queijo e presunto", "preco": "12.00" },
                 { "nome": "Omelete de Carne", "descricao": "", "preco": "24.00" },
                 { "nome": "Omelete de Frango", "descricao": "", "preco": "22.00" },
                 { "nome": "Ovo Cozido", "descricao": "", "preco": "3.00" },
                 { "nome": "Ovo Frito", "descricao": "Ovo frito", "preco": "3.00" },
                 { "nome": "Pão com ovos", "descricao": "", "preco": "8.00" },
-                { "nome": "Pão com manteiga", "Pão francês 50g": "", "preco": "2.00" },
+                { "nome": "Pão com manteiga (Pão de hambúrguer)", "descricao": "Pão de Hambúrguer com manteiga", "preco": "6.00" },
+                { "nome": "Pão com manteiga (50g - pão francês)", "descricao": "Pão francês ou integral com manteiga", "preco": "3.00" },
                 { "nome": "Pão com ovo", "descricao": "", "preco": "8.00" },
-                { "nome": "Sanduíche Americano", "descricao": "Pão, queijo, presunto, ovo, tomate, alface e cebola", "preco": "16.00" },
+                { "nome": "Pão com ovos e queijo", "descricao": "", "preco": "11.00" },
+                { "nome": "Sanduiche Americano", "descricao": "Pão, queijo, presunto, ovo, tomate, alface e cebola", "preco": "16.00" },
                 { "nome": "Sanduíche de Frango", "descricao": "Pão baguete, frango, bacon, calabresa, mussarela, tomate, alface e cebola", "preco": "28.00" },
                 { "nome": "Sanduíche de Picanha", "descricao": "Pão baguete, picanha, bacon, requeijão, tomate, alface e cebola", "preco": "35.00" },
                 { "nome": "Sanduíche de Toscana", "descricao": "Pão baguete, toscana, queijo, tomate, alface e cebola", "preco": "22.00" },
                 { "nome": "Tapioca com Frango", "descricao": "Tapioca com frango desfiado", "preco": "12.00" },
-                { "nome": "Tapioca com Frango e queijo", "descricao": "Tapioca com frango desfiado e queijo", "preco": "14.00" },
                 { "nome": "Tapioca com ovos", "descricao": "", "preco": "12.00" },
+                { "nome": "Tapioca de Frango com queijo", "descricao": "", "preco": "14.00" },
                 { "nome": "Tapioca Mista", "descricao": "", "preco": "12.00" },
-                { "nome": "Tapioca Mista c/ ovos (queijo/presunto/ovos)", "descricao": "", "preco": "17.00" }
+                { "nome": "Tapioca Mista c/ ovos (queijo/presunto/ovos)", "descricao": "", "preco": "17.00" },
+                { "nome": "Vitamina (diversas)", "descricao": "", "preco": "12.00" }
             ],
             "Almoço": [
                 { "nome": "Almoço - Bife a Cavalo", "descricao": "Servido com feijão (caldo ou tropeiro), arroz, macarrão e salada", "preco": "30.00" },
@@ -357,24 +361,22 @@
                 { "nome": "Coxinha", "descricao": "", "preco": "8.00" },
                 { "nome": "Coxinha Especial", "descricao": "", "preco": "10.00" },
                 { "nome": "Cupcake", "descricao": "", "preco": "5.00" },
-                { "nome": "Empada", "descricao": "", "preco": "8.00" },
+                { "nome": "Empada", "descricao": "Empada sabores diversos", "preco": "8.00" },
                 { "nome": "Empada mini", "descricao": "", "preco": "4.00" },
                 { "nome": "Kibe Frito", "descricao": "", "preco": "12.00" },
-                { "nome": "Pão com ovos e queijo", "descricao": "", "preco": "11.00" },
-                { "nome": "Pao de Queijo", "descricao": "", "preco": "7.00" },
+                { "nome": "Pão de Queijo", "descricao": "", "preco": "7.00" },
                 { "nome": "Pão Delícia", "descricao": "", "preco": "11.00" },
                 { "nome": "Pastel de Forno", "descricao": "", "preco": "8.00" },
                 { "nome": "Salgadinho", "descricao": "", "preco": "2.50" },
                 { "nome": "Salgados Diversos", "descricao": "", "preco": "12.00" },
                 { "nome": "Torta (fatia)", "descricao": "", "preco": "18.00" },
                 { "nome": "Torta de Limão", "descricao": "Torta sabor limão", "preco": "14.00" },
-                { "nome": "Torta de Maracujá", "descricao": "Torta com sabor maracujá", "preco": "14.00" },
-                { "nome": "Vitamina (diversas)", "descricao": "", "preco": "12.00" }
+                { "nome": "Torta de Maracujá", "descricao": "Torta com sabor maracujá", "preco": "14.00" }
             ],
             "Bebidas": [
-                { "nome": "Agua com Gás 500ml", "descricao": "", "preco": "5.00" },
-                { "nome": "Agua sem Gás 500ml", "descricao": "", "preco": "4.00" },
-                { "nome": "Agua Tônica lata 350ml", "descricao": "", "preco": "6.50" },
+                { "nome": "Água com Gás 500ml", "descricao": "", "preco": "5.00" },
+                { "nome": "Água sem Gás 500ml", "descricao": "", "preco": "4.00" },
+                { "nome": "Água Tônica lata 350ml", "descricao": "", "preco": "6.50" },
                 { "nome": "Amstel lata 295ml", "descricao": "", "preco": "8.00" },
                 { "nome": "Aquarius Fresh", "descricao": "", "preco": "7.50" },
                 { "nome": "Café com Leite (média)", "descricao": "Xícara média de café", "preco": "6.00" },
@@ -520,7 +522,13 @@
                 
                 const titulo = document.createElement('h2');
                 titulo.className = 'categoria-titulo';
-                titulo.textContent = categoria;
+                
+                // Ajusta o nome da categoria para exibição
+                let nomeCategoria = categoria;
+                if (categoria === "Café da Manhã, Lanche e Jantar") {
+                    nomeCategoria = "Café da Manhã / Lanche / Jantar";
+                }
+                titulo.textContent = nomeCategoria;
                 categoriaSection.appendChild(titulo);
 
                 // Adiciona aviso especial para a categoria Almoço
