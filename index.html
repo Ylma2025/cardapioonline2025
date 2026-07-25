@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -197,14 +198,6 @@
             line-height: 1.5;
         }
 
-        .acompanhamentos {
-            color: #8b5fad;
-            font-size: 0.9rem;
-            margin-top: 0.5rem;
-            padding-top: 0.5rem;
-            border-top: 1px dashed #e0e0e0;
-        }
-
         .footer {
             background: #333;
             color: white;
@@ -257,7 +250,7 @@
     <section class="filtros">
         <div class="container">
             <button class="filtro-btn active" data-categoria="all">Todos</button>
-            <button class="filtro-btn" data-categoria="Café da Manhã, Lanche e Jantar">Café da Manhã, Lanche e Jantar</button>
+            <button class="filtro-btn" data-categoria="Café da Manhã, Lanche e Jantar">Café da Manhã</button>
             <button class="filtro-btn" data-categoria="Almoço">Almoço</button>
             <button class="filtro-btn" data-categoria="Lanche">Lanches</button>
             <button class="filtro-btn" data-categoria="Bebidas">Bebidas</button>
@@ -268,6 +261,7 @@
             <button class="filtro-btn" data-categoria="Espetinho">Espetinho</button>
             <button class="filtro-btn" data-categoria="Sobremesa">Sobremesa</button>
             <button class="filtro-btn" data-categoria="Bolo (encomenda)">Bolos</button>
+            <button class="filtro-btn" data-categoria="Promoções Especiais">Promoções</button>
         </div>
     </section>
 
@@ -284,7 +278,7 @@
     </footer>
 
     <script>
-        // DADOS COMPLETOS DO CSV - TODOS OS ITENS DISPONÍVEIS (EXCLUINDO PROMOÇÕES ESPECIAIS)
+        // DADOS COMPLETOS DO CSV - TODOS OS ITENS DISPONÍVEIS E PROMOÇÕES
         const cardapioData = {
             "Café da Manhã, Lanche e Jantar": [
                 { "nome": "Aipim Cozido - Charque", "descricao": "Carne, ovo, tomate, alface e cebola", "preco": "30.00" },
@@ -307,8 +301,10 @@
                 { "nome": "Cuscuz temperado (pequeno)", "descricao": "cuzcuz com proteina a escolher", "preco": "20.00" },
                 { "nome": "Cuscuz com ovos (pequeno)", "descricao": "cuscuz, dois ovos", "preco": "17.00" },
                 { "nome": "Hambúrguer Artesanal", "descricao": "Pão especial, carne, calabresa, bacon, queijo, presunto, tomate, alface e cebola", "preco": "30.00" },
+                { "nome": "Migau de milho", "descricao": "", "preco": "12.00" },
                 { "nome": "Misto no pão baguete", "descricao": "Pão baguete com queijo e presunto", "preco": "18.00" },
                 { "nome": "Misto Quente", "descricao": "Pão, queijo e presunto", "preco": "12.00" },
+                { "nome": "Mungunzá", "descricao": "", "preco": "12.00" },
                 { "nome": "Omelete de Carne", "descricao": "", "preco": "24.00" },
                 { "nome": "Omelete de Frango", "descricao": "", "preco": "22.00" },
                 { "nome": "Ovo Cozido", "descricao": "", "preco": "3.00" },
@@ -398,6 +394,7 @@
                 { "nome": "Refrigerante 1 litro Coca-cola", "descricao": "Coca Cola", "preco": "10.00" },
                 { "nome": "Refrigerante 1 litro Fanta", "descricao": "", "preco": "10.00" },
                 { "nome": "Refrigerante 1lt - Pepsi, Soda, Guaraná", "descricao": "Guaraná Antarctica, Pepsi, Soda Limonada", "preco": "10.00" },
+                { "nome": "Refrigerante Fanta 1,5l", "descricao": "", "preco": "15.00" },
                 { "nome": "Refrigerante Lata 350ml", "descricao": "", "preco": "6.00" },
                 { "nome": "Refrigerante Lata 350ml Coca-Cola", "descricao": "Coca, Fanta, Guaraná, Limão 350ml", "preco": "6.00" },
                 { "nome": "Refrigerante Lata 350ml Sprite", "descricao": "", "preco": "6.00" },
@@ -437,12 +434,15 @@
             "Doces": [
                 { "nome": "Bala Fine", "descricao": "", "preco": "8.99" },
                 { "nome": "Balas e outros", "descricao": "", "preco": "variable" },
-                { "nome": "Bolo (fatia)", "descricao": "", "preco": "10.00" },
+                { "nome": "Bolo (fatia)", "descricao": "", "preco": "12.00" },
                 { "nome": "Bolo de Pote", "descricao": "", "preco": "8.00" },
                 { "nome": "Brigadeirão", "descricao": "", "preco": "3.00" },
                 { "nome": "Cupcake", "descricao": "", "preco": "5.00" },
                 { "nome": "Empada Doce", "descricao": "", "preco": "8.00" },
                 { "nome": "Haribo", "descricao": "", "preco": "8.99" },
+                { "nome": "Haribo Ceeam Kiss/Sweet Bananas", "descricao": "", "preco": "4.99" },
+                { "nome": "Haribo Chamallows", "descricao": "", "preco": "9.99" },
+                { "nome": "Musse", "descricao": "", "preco": "8.00" },
                 { "nome": "Torta de Limão", "descricao": "Torta sabor limão", "preco": "14.00" },
                 { "nome": "Torta de Maracujá", "descricao": "Torta com sabor maracujá", "preco": "14.00" },
                 { "nome": "Tortas diversas (fatia)", "descricao": "", "preco": "18.00" },
@@ -450,18 +450,17 @@
             ],
             "Petisco": [
                 { "nome": "Batata Frita - Porção", "descricao": "", "preco": "25.00" },
-                { "nome": "Bolinho de Peixe", "descricao": "Massa frita com recheio de filé de peixe", "preco": "variable" },
                 { "nome": "Bolinho de Peixe (8 unidades)", "descricao": "", "preco": "30.00" },
-                { "nome": "Bolinho de Queijo", "descricao": "Bolinho frito com recheio de queijo", "preco": "variable" },
                 { "nome": "Bolinho de Queijo (8 unidades)", "descricao": "", "preco": "30.00" },
-                { "nome": "Bolinho de Queijo e Presunto", "descricao": "Massa frita com recheio de queijo e presunto", "preco": "variable" },
+                { "nome": "Bolinho de Queijo e Presunto", "descricao": "Massa frita com recheio de queijo e presunto", "preco": "30.00" },
                 { "nome": "Caldo de Sururu", "descricao": "", "preco": "15.00" },
                 { "nome": "Camarão Empanado", "descricao": "Camarão frito empanado na farinha de rosca e crocante", "preco": "55.00" },
                 { "nome": "Camarão Encapotado", "descricao": "Camarão empanado com tapioca", "preco": "35.00" },
                 { "nome": "Carne do Sol com Fritas", "descricao": "Carne do Sol com batatas fritas", "preco": "38.00" },
                 { "nome": "Codorna", "descricao": "", "preco": "18.00" },
                 { "nome": "Escondidinho de Camarão", "descricao": "", "preco": "40.00" },
-                { "nome": "Escondidinho de Carne do Sol", "descricao": "", "preco": "35.00" }
+                { "nome": "Escondidinho de Carne do Sol", "descricao": "", "preco": "35.00" },
+                { "nome": "Pititinga", "descricao": "", "preco": "30.00" }
             ],
             "Pastel": [
                 { "nome": "Pastel de Camarão", "descricao": "", "preco": "19.00" },
@@ -508,9 +507,14 @@
             ],
             "Bolo (encomenda)": [
                 { "nome": "Bolo 15cm", "descricao": "", "preco": "150.00" },
-                { "nome": "Bolo 20cm", "descricao": "", "preco": "150.00" },
+                { "nome": "Bolo 20cm", "descricao": "", "preco": "180.00" },
                 { "nome": "Bolo 25cm", "descricao": "", "preco": "250.00" },
                 { "nome": "Bolo 30cm", "descricao": "", "preco": "350.00" }
+            ],
+            "Promoções Especiais": [
+                { "nome": "Bolinho de Peixe (6 UN Promo - dobrado)", "descricao": "6 unidades - Promoção especial", "preco": "30.00" },
+                { "nome": "Bolinho de Queijo (6 UN Promo - dobrado)", "descricao": "6 unidades - Promoção especial", "preco": "30.00" },
+                { "nome": "Torta (promoção - fatia dobrada)", "descricao": "Fatia de torta em dobro", "preco": "18.00" }
             ]
         };
 
@@ -531,16 +535,25 @@
                 
                 const titulo = document.createElement('h2');
                 titulo.className = 'categoria-titulo';
-                
-                // Usa o nome exato da categoria do CSV
                 titulo.textContent = categoria;
                 categoriaSection.appendChild(titulo);
 
-                // Adiciona aviso especial para a categoria Almoço
+                // Aviso especial para Almoço
                 if (categoria === 'Almoço') {
                     const aviso = document.createElement('div');
                     aviso.className = 'categoria-aviso';
                     aviso.innerHTML = '<strong>🎁 Promoção Especial:</strong> Todos os pratos de almoço incluem suco 300ml ou refrigerante mini pet 230ml gratuitamente!';
+                    categoriaSection.appendChild(aviso);
+                }
+
+                // Aviso especial para Promoções
+                if (categoria === 'Promoções Especiais') {
+                    const aviso = document.createElement('div');
+                    aviso.className = 'categoria-aviso';
+                    aviso.style.background = '#fff3e0';
+                    aviso.style.borderColor = '#ff9800';
+                    aviso.style.color = '#e65100';
+                    aviso.innerHTML = '🌟 <strong>Ofertas Imperdíveis!</strong> Aproveite nossas promoções especiais por tempo limitado!';
                     categoriaSection.appendChild(aviso);
                 }
 
@@ -550,6 +563,12 @@
                 itens.forEach(item => {
                     const itemCard = document.createElement('div');
                     itemCard.className = 'item-card';
+                    
+                    // Estilo especial para promoções
+                    if (categoria === 'Promoções Especiais') {
+                        itemCard.style.borderLeftColor = '#ff9800';
+                        itemCard.style.background = '#fff8e1';
+                    }
                     
                     let itemHTML = `
                         <div class="item-header">
